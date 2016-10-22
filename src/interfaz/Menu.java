@@ -34,7 +34,8 @@ public class Menu extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         cmdHacerPedido = new javax.swing.JButton();
-        cmdEntrar1 = new javax.swing.JButton();
+        cmdSalir = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnOpciones = new javax.swing.JMenu();
         mnReportes = new javax.swing.JMenu();
@@ -72,16 +73,19 @@ public class Menu extends javax.swing.JDialog {
         });
         jPanel1.add(cmdHacerPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 320, 70));
 
-        cmdEntrar1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        cmdEntrar1.setForeground(new java.awt.Color(255, 0, 0));
-        cmdEntrar1.setText("SALIR");
-        cmdEntrar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true));
-        cmdEntrar1.addActionListener(new java.awt.event.ActionListener() {
+        cmdSalir.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdSalir.setForeground(new java.awt.Color(255, 0, 0));
+        cmdSalir.setText("SALIR");
+        cmdSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true));
+        cmdSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdEntrar1ActionPerformed(evt);
+                cmdSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdEntrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 160, 40));
+        jPanel1.add(cmdSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 160, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonald-fast-food-wallpaper-186080.jpg"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
 
@@ -138,10 +142,10 @@ public class Menu extends javax.swing.JDialog {
                  
     }//GEN-LAST:event_mnCerrarCesionActionPerformed
 
-    private void cmdEntrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEntrar1ActionPerformed
+    private void cmdSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSalirActionPerformed
 
         System.exit(0);
-    }//GEN-LAST:event_cmdEntrar1ActionPerformed
+    }//GEN-LAST:event_cmdSalirActionPerformed
 
     private void cmdHacerPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdHacerPedidoActionPerformed
 
@@ -192,10 +196,11 @@ public class Menu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cmdEntrar1;
     private javax.swing.JButton cmdHacerPedido;
+    private javax.swing.JButton cmdSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;

@@ -29,48 +29,82 @@ public class Pedidos extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        cmdMenuHamburguesas = new javax.swing.JButton();
+        cmdMacCombo = new javax.swing.JButton();
+        cmdCajitaFeliz = new javax.swing.JButton();
+        cmdMenuEnsaladaAcompañamientos = new javax.swing.JButton();
+        cmdRegresar = new javax.swing.JButton();
+        cmdMenuPostres = new javax.swing.JButton();
+        cmdMenuPollo = new javax.swing.JButton();
+        cmdMenuDesayunos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("CAJITA FELIZ");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 220, 50));
+        cmdMenuHamburguesas.setText("HAMBURGUESAS");
+        cmdMenuHamburguesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMenuHamburguesasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdMenuHamburguesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 180, 50));
 
-        jButton2.setText("HAMBURGUESAS");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 220, 50));
+        cmdMacCombo.setText("MAC COMBO");
+        jPanel1.add(cmdMacCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 190, 50));
 
-        jButton3.setText("POLLO");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 220, 50));
+        cmdCajitaFeliz.setText("CAJITA FELIZ");
+        jPanel1.add(cmdCajitaFeliz, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 180, 50));
 
-        jButton5.setText("DESAYUNOS");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 220, 50));
+        cmdMenuEnsaladaAcompañamientos.setText("ENSALADA Y ACOMPAÑAMIENTOS");
+        jPanel1.add(cmdMenuEnsaladaAcompañamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 190, 50));
 
-        jButton6.setText("POSTRES ");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 220, 50));
+        cmdRegresar.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdRegresar.setForeground(new java.awt.Color(255, 0, 0));
+        cmdRegresar.setText("REGRESAR");
+        cmdRegresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true));
+        cmdRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 160, 40));
 
-        jButton7.setText("MAC COMBO");
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 220, 50));
+        cmdMenuPostres.setText("POSTRES");
+        cmdMenuPostres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMenuPostresActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdMenuPostres, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 180, 50));
 
-        jButton8.setText("CAJITA FELIZ");
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 220, 50));
+        cmdMenuPollo.setText("POLLO");
+        cmdMenuPollo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMenuPolloActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdMenuPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, 50));
 
-        jButton9.setText("ENSALADA Y ACOMPAÑAMIENTOS");
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 220, 50));
+        cmdMenuDesayunos.setText("DESAYUNOS");
+        cmdMenuDesayunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMenuDesayunosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdMenuDesayunos, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 180, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonalds,-madera-165062.jpg"))); // NOI18N
+        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -81,8 +115,35 @@ public class Pedidos extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(632, 500));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdMenuPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuPostresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdMenuPostresActionPerformed
+
+    private void cmdRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegresarActionPerformed
+
+        this.setVisible(false);
+
+    }//GEN-LAST:event_cmdRegresarActionPerformed
+
+    private void cmdMenuHamburguesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuHamburguesasActionPerformed
+
+        Hamburguesas h = new Hamburguesas(null, true);
+        h.setVisible(true);
+    }//GEN-LAST:event_cmdMenuHamburguesasActionPerformed
+
+    private void cmdMenuPolloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuPolloActionPerformed
+
+        Pollos p = new Pollos(null, true);
+        p.setVisible(true);
+    }//GEN-LAST:event_cmdMenuPolloActionPerformed
+
+    private void cmdMenuDesayunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuDesayunosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdMenuDesayunosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,14 +188,15 @@ public class Pedidos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton cmdCajitaFeliz;
+    private javax.swing.JButton cmdMacCombo;
+    private javax.swing.JButton cmdMenuDesayunos;
+    private javax.swing.JButton cmdMenuEnsaladaAcompañamientos;
+    private javax.swing.JButton cmdMenuHamburguesas;
+    private javax.swing.JButton cmdMenuPollo;
+    private javax.swing.JButton cmdMenuPostres;
+    private javax.swing.JButton cmdRegresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

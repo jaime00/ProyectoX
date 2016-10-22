@@ -48,33 +48,53 @@ public class Helper {
         }
     }
 
-    public static void llenarTabla(JTable tabla, String ruta) {
+    public static void llenarTabla(JTable tabla, String ruta, int cant, String categoria) {
         DefaultTableModel tm;
         int nf;
-        ArrayList<Persona> personas = traerDatos(ruta);
+        ArrayList<Comida> comidas = traerDatos(ruta);
         tm = (DefaultTableModel) tabla.getModel();
         limpiadoTabla(tabla);
-        nf = personas.size();
+        nf = comidas.size();
         tm.setRowCount(nf);
         for (int i = 0; i < nf; i++) {
             tabla.setValueAt(i + 1, i, 0);
-            tabla.setValueAt(personas.get(i).getCedula(), i, 1);
-            tabla.setValueAt(personas.get(i).getNombre(), i, 2);
-            tabla.setValueAt(personas.get(i).getApellido(), i, 3);
+            tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
+            tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
+            
+            
+
         }
     }
 
+        public static void llenarTabla(JTable tabla, String ruta, String categoria) {
+        DefaultTableModel tm;
+        int nf;
+        ArrayList<Comida> comidas = traerDatos(ruta);
+        tm = (DefaultTableModel) tabla.getModel();
+        limpiadoTabla(tabla);
+        nf = comidas.size();
+        tm.setRowCount(nf);
+        for (int i = 0; i < nf; i++) {
+            tabla.setValueAt(i + 1, i, 0);
+            tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
+            tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
+            tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
+            
+            
+
+        }
+    }
     public static ArrayList traerDatos(String ruta) {
         FileInputStream archivo;
         ObjectInputStream entrada;
-        ArrayList personas = new ArrayList();
-        Object p;
+        ArrayList comidas = new ArrayList();
+        Object c;
 
         try {
             archivo = new FileInputStream(ruta);
             entrada = new ObjectInputStream(archivo);
-            while ((p = entrada.readObject()) != null) {
-                personas.add(p);
+            while ((c = entrada.readObject()) != null) {
+                comidas.add(c);
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -83,13 +103,13 @@ public class Helper {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
-        return personas;
+        return comidas;
     }
 
-    public static void volcado(ObjectOutputStream salida, ArrayList personas) {
-        for (int i = 0; i < personas.size(); i++) {
+    public static void volcado(ObjectOutputStream salida, ArrayList comidas) {
+        for (int i = 0; i <comidas.size(); i++) {
             try {
-                salida.writeObject(personas.get(i));
+                salida.writeObject(comidas.get(i));
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
