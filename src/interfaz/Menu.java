@@ -30,50 +30,90 @@ public class Menu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        cmdHacerPedido = new javax.swing.JButton();
+        cmdEntrar1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnOpciones = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mnReportes = new javax.swing.JMenu();
+        mnListado = new javax.swing.JMenu();
+        mnListadoTrabajadores = new javax.swing.JMenuItem();
+        mnListadoVentasTotal = new javax.swing.JMenuItem();
+        mnCantidades = new javax.swing.JMenu();
+        mnCantidadTrabajadores = new javax.swing.JMenuItem();
+        mnCantidadVendidas = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnCerrarCesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("Pedidos");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, -1));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Papas.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 30, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pizza_icon-icons.com_54377.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, 50));
+
+        cmdHacerPedido.setBackground(new java.awt.Color(255, 255, 255));
+        cmdHacerPedido.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdHacerPedido.setForeground(new java.awt.Color(255, 0, 0));
+        cmdHacerPedido.setText("  HACER PEDIDO  ");
+        cmdHacerPedido.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
+        cmdHacerPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmdHacerPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdHacerPedidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdHacerPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 320, 70));
+
+        cmdEntrar1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdEntrar1.setForeground(new java.awt.Color(255, 0, 0));
+        cmdEntrar1.setText("SALIR");
+        cmdEntrar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true));
+        cmdEntrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdEntrar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdEntrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 160, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 0));
+        jMenuBar1.setBorder(new javax.swing.border.MatteBorder(null));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 0));
 
         mnOpciones.setText("Opciones");
 
-        jMenu1.setText("Reportes");
+        mnReportes.setText("Reportes");
 
-        jMenu2.setText("Listado");
+        mnListado.setText("Listado");
 
-        jMenuItem2.setText("Listado de Trabajadores");
-        jMenu2.add(jMenuItem2);
+        mnListadoTrabajadores.setText("Listado de Trabajadores");
+        mnListado.add(mnListadoTrabajadores);
 
-        jMenuItem1.setText("Listado de Ventas Total");
-        jMenu2.add(jMenuItem1);
+        mnListadoVentasTotal.setText("Listado de Ventas Total");
+        mnListado.add(mnListadoVentasTotal);
 
-        jMenu1.add(jMenu2);
+        mnReportes.add(mnListado);
 
-        jMenu3.setText("Cantidades");
+        mnCantidades.setText("Cantidades");
 
-        jMenuItem3.setText("Cantidad de Trabajadores");
-        jMenu3.add(jMenuItem3);
+        mnCantidadTrabajadores.setText("Cantidad de Trabajadores");
+        mnCantidades.add(mnCantidadTrabajadores);
 
-        jMenuItem4.setText("Cantidades vendidas");
-        jMenu3.add(jMenuItem4);
+        mnCantidadVendidas.setText("Cantidades vendidas");
+        mnCantidades.add(mnCantidadVendidas);
 
-        jMenu1.add(jMenu3);
+        mnReportes.add(mnCantidades);
 
-        mnOpciones.add(jMenu1);
+        mnOpciones.add(mnReportes);
         mnOpciones.add(jSeparator1);
 
         mnCerrarCesion.setText("Cerrar Cesion");
@@ -88,7 +128,7 @@ public class Menu extends javax.swing.JDialog {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(409, 317));
+        setSize(new java.awt.Dimension(573, 446));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -97,6 +137,17 @@ public class Menu extends javax.swing.JDialog {
         this.setVisible(false);      
                  
     }//GEN-LAST:event_mnCerrarCesionActionPerformed
+
+    private void cmdEntrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEntrar1ActionPerformed
+
+        System.exit(0);
+    }//GEN-LAST:event_cmdEntrar1ActionPerformed
+
+    private void cmdHacerPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdHacerPedidoActionPerformed
+
+        Pedidos p = new Pedidos(null, true);
+        p.setVisible(true);
+    }//GEN-LAST:event_cmdHacerPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,17 +192,21 @@ public class Menu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JButton cmdEntrar1;
+    private javax.swing.JButton cmdHacerPedido;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem mnCantidadTrabajadores;
+    private javax.swing.JMenuItem mnCantidadVendidas;
+    private javax.swing.JMenu mnCantidades;
     private javax.swing.JMenuItem mnCerrarCesion;
+    private javax.swing.JMenu mnListado;
+    private javax.swing.JMenuItem mnListadoTrabajadores;
+    private javax.swing.JMenuItem mnListadoVentasTotal;
     private javax.swing.JMenu mnOpciones;
+    private javax.swing.JMenu mnReportes;
     // End of variables declaration//GEN-END:variables
 }
