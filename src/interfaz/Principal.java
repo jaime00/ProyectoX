@@ -33,7 +33,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtPass = new javax.swing.JPasswordField();
+        passContrasena = new javax.swing.JPasswordField();
         cmdEntrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -55,7 +55,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(204, 255, 204));
         jLabel3.setText("Contraseña:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 110, -1));
-        jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 110, -1));
+
+        passContrasena.setText("123");
+        jPanel1.add(passContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 110, -1));
 
         cmdEntrar.setText("Entrar");
         cmdEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,20 +87,22 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEntrarActionPerformed
 
-        if(txtUsuario.getText().trim().isEmpty()){
+        if (txtUsuario.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Digite por favor el Usuario");
             txtUsuario.requestFocusInWindow();
-       }else if(txtPass.getText().trim().isEmpty()){
-           JOptionPane.showMessageDialog(this, "Digite por favor la contraseña");
-           txtPass.requestFocusInWindow();
-       }else{
-           if(txtUsuario.getText().equalsIgnoreCase("ADMIN")){
-               
-           }
-           
-           
-       }
-        
+        } else if (passContrasena.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite por favor la contraseña");
+            passContrasena.requestFocusInWindow();
+        } else if (txtUsuario.getText().equalsIgnoreCase("ADMIN") && passContrasena.getText().equals("123")) {
+            
+            this.setVisible(false);
+            Menu a = new Menu(this, true);
+            a.setVisible(true);        
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Campos Invalidos !");
+        }
+
     }//GEN-LAST:event_cmdEntrarActionPerformed
 
     /**
@@ -142,7 +146,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JPasswordField passContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
