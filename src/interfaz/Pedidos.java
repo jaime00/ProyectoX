@@ -30,11 +30,9 @@ public class Pedidos extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         cmdMenuHamburguesas = new javax.swing.JButton();
-        cmdMacCombo = new javax.swing.JButton();
-        cmdCajitaFeliz = new javax.swing.JButton();
         cmdMenuEnsaladaAcompañamientos = new javax.swing.JButton();
         cmdRegresar = new javax.swing.JButton();
-        cmdMenuPostres = new javax.swing.JButton();
+        cmdMenuBebidas = new javax.swing.JButton();
         cmdMenuPollo = new javax.swing.JButton();
         cmdMenuDesayunos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -52,33 +50,31 @@ public class Pedidos extends javax.swing.JDialog {
         });
         jPanel1.add(cmdMenuHamburguesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 180, 50));
 
-        cmdMacCombo.setText("MAC COMBO");
-        jPanel1.add(cmdMacCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 190, 50));
-
-        cmdCajitaFeliz.setText("CAJITA FELIZ");
-        jPanel1.add(cmdCajitaFeliz, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 180, 50));
-
-        cmdMenuEnsaladaAcompañamientos.setText("ENSALADA Y ACOMPAÑAMIENTOS");
-        jPanel1.add(cmdMenuEnsaladaAcompañamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 190, 50));
+        cmdMenuEnsaladaAcompañamientos.setText("ACOMPAÑAMIENTOS");
+        cmdMenuEnsaladaAcompañamientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMenuEnsaladaAcompañamientosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdMenuEnsaladaAcompañamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 190, 50));
 
         cmdRegresar.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         cmdRegresar.setForeground(new java.awt.Color(255, 0, 0));
         cmdRegresar.setText("REGRESAR");
-        cmdRegresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true));
         cmdRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 160, 40));
+        jPanel1.add(cmdRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 180, 40));
 
-        cmdMenuPostres.setText("POSTRES");
-        cmdMenuPostres.addActionListener(new java.awt.event.ActionListener() {
+        cmdMenuBebidas.setText("BEBIDAS");
+        cmdMenuBebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdMenuPostresActionPerformed(evt);
+                cmdMenuBebidasActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuPostres, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 180, 50));
+        jPanel1.add(cmdMenuBebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 180, 50));
 
         cmdMenuPollo.setText("POLLO");
         cmdMenuPollo.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +82,7 @@ public class Pedidos extends javax.swing.JDialog {
                 cmdMenuPolloActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, 50));
+        jPanel1.add(cmdMenuPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 180, 50));
 
         cmdMenuDesayunos.setText("DESAYUNOS");
         cmdMenuDesayunos.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +90,7 @@ public class Pedidos extends javax.swing.JDialog {
                 cmdMenuDesayunosActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuDesayunos, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 180, 50));
+        jPanel1.add(cmdMenuDesayunos, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 180, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonalds,-madera-165062.jpg"))); // NOI18N
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -119,9 +115,11 @@ public class Pedidos extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmdMenuPostresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuPostresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmdMenuPostresActionPerformed
+    private void cmdMenuBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuBebidasActionPerformed
+
+        Bebidas b = new Bebidas(null, true);
+        b.setVisible(true);
+    }//GEN-LAST:event_cmdMenuBebidasActionPerformed
 
     private void cmdRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegresarActionPerformed
 
@@ -142,8 +140,16 @@ public class Pedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdMenuPolloActionPerformed
 
     private void cmdMenuDesayunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuDesayunosActionPerformed
-        // TODO add your handling code here:
+
+        Desayunos d = new Desayunos(null, true);
+        d.setVisible(true);
     }//GEN-LAST:event_cmdMenuDesayunosActionPerformed
+
+    private void cmdMenuEnsaladaAcompañamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMenuEnsaladaAcompañamientosActionPerformed
+
+        Acompañamientos a = new Acompañamientos(null, true);
+        a.setVisible(true);
+    }//GEN-LAST:event_cmdMenuEnsaladaAcompañamientosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,13 +194,11 @@ public class Pedidos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cmdCajitaFeliz;
-    private javax.swing.JButton cmdMacCombo;
+    private javax.swing.JButton cmdMenuBebidas;
     private javax.swing.JButton cmdMenuDesayunos;
     private javax.swing.JButton cmdMenuEnsaladaAcompañamientos;
     private javax.swing.JButton cmdMenuHamburguesas;
     private javax.swing.JButton cmdMenuPollo;
-    private javax.swing.JButton cmdMenuPostres;
     private javax.swing.JButton cmdRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
