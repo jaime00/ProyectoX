@@ -40,11 +40,11 @@ public class Menu extends javax.swing.JDialog {
         mnOpciones = new javax.swing.JMenu();
         mnReportes = new javax.swing.JMenu();
         mnListado = new javax.swing.JMenu();
-        mnListadoTrabajadores = new javax.swing.JMenuItem();
         mnListadoVentasTotal = new javax.swing.JMenuItem();
+        mnListadoClientes = new javax.swing.JMenuItem();
         mnCantidades = new javax.swing.JMenu();
-        mnCantidadTrabajadores = new javax.swing.JMenuItem();
         mnCantidadVendidas = new javax.swing.JMenuItem();
+        mnCantidadClientes = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnCerrarCesion = new javax.swing.JMenuItem();
 
@@ -99,21 +99,21 @@ public class Menu extends javax.swing.JDialog {
 
         mnListado.setText("Listado");
 
-        mnListadoTrabajadores.setText("Listado de Trabajadores");
-        mnListado.add(mnListadoTrabajadores);
-
         mnListadoVentasTotal.setText("Listado de Ventas Total");
         mnListado.add(mnListadoVentasTotal);
+
+        mnListadoClientes.setText("Listado de Clientes");
+        mnListado.add(mnListadoClientes);
 
         mnReportes.add(mnListado);
 
         mnCantidades.setText("Cantidades");
 
-        mnCantidadTrabajadores.setText("Cantidad de Trabajadores");
-        mnCantidades.add(mnCantidadTrabajadores);
-
         mnCantidadVendidas.setText("Cantidades vendidas");
         mnCantidades.add(mnCantidadVendidas);
+
+        mnCantidadClientes.setText("Cantidad de Clientes");
+        mnCantidades.add(mnCantidadClientes);
 
         mnReportes.add(mnCantidades);
 
@@ -137,8 +137,10 @@ public class Menu extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnCerrarCesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCerrarCesionActionPerformed
-
-        this.setVisible(false);      
+        
+        this.setVisible(false); 
+        Principal p = new Principal();
+        p.setVisible(true);          
                  
     }//GEN-LAST:event_mnCerrarCesionActionPerformed
 
@@ -204,12 +206,12 @@ public class Menu extends javax.swing.JDialog {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenuItem mnCantidadTrabajadores;
+    private javax.swing.JMenuItem mnCantidadClientes;
     private javax.swing.JMenuItem mnCantidadVendidas;
     private javax.swing.JMenu mnCantidades;
     private javax.swing.JMenuItem mnCerrarCesion;
     private javax.swing.JMenu mnListado;
-    private javax.swing.JMenuItem mnListadoTrabajadores;
+    private javax.swing.JMenuItem mnListadoClientes;
     private javax.swing.JMenuItem mnListadoVentasTotal;
     private javax.swing.JMenu mnOpciones;
     private javax.swing.JMenu mnReportes;

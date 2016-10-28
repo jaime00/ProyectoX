@@ -32,14 +32,14 @@
                     <Property name="text" type="java.lang.String" value="Listado"/>
                   </Properties>
                   <SubComponents>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnListadoTrabajadores">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Listado de Trabajadores"/>
-                      </Properties>
-                    </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="mnListadoVentasTotal">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Listado de Ventas Total"/>
+                      </Properties>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="mnListadoClientes">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Listado de Clientes"/>
                       </Properties>
                     </MenuItem>
                   </SubComponents>
@@ -49,14 +49,14 @@
                     <Property name="text" type="java.lang.String" value="Cantidades"/>
                   </Properties>
                   <SubComponents>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnCantidadTrabajadores">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Cantidad de Trabajadores"/>
-                      </Properties>
-                    </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="mnCantidadVendidas">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cantidades vendidas"/>
+                      </Properties>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="mnCantidadClientes">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Cantidad de Clientes"/>
                       </Properties>
                     </MenuItem>
                   </SubComponents>

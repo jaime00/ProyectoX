@@ -161,7 +161,7 @@ public class Acompañamientos extends javax.swing.JDialog {
         jLabel4.setText("McFLURRY  (Postre)");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, 250, -1));
 
-        cmdA3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/POSTRES.jpg"))); // NOI18N
+        cmdA3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcflurry.jpg"))); // NOI18N
         cmdA3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         cmdA3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
