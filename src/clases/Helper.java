@@ -60,8 +60,7 @@ public class Helper {
             tabla.setValueAt(i + 1, i, 0);
             tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
-            
-            
+  
 
         }
     }
@@ -117,16 +116,5 @@ public class Helper {
         }
     }
 
-    /*      public static void listadoPorSexo(JTable tabla, String ruta, String sexo ){
-        ArrayList<Persona> personas = traerDatos(ruta);
-        ArrayList<Persona> personasFiltradas = new ArrayList();
-        for (int i = 0; i < personas.size(); i++) {
-          if(personas.get(i).getSexo().equals(sexo)){
-              personasFiltradas.add(personas.get(i));
-          }
-            
-        }
-        llenarTabla(tabla, personasFiltradas);
-        
-     */
+
 }

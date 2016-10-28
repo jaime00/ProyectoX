@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import clases.Helper;
 import javax.swing.JFrame;
 
 /**
@@ -16,9 +17,12 @@ public class Menu extends javax.swing.JDialog {
     /**
      * Creates new form Menu
      */
+    String ruta;
+
     public Menu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ruta = "src/datos/Comidas.txt";
     }
 
     /**
@@ -34,8 +38,9 @@ public class Menu extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         cmdHacerPedido = new javax.swing.JButton();
-        cmdSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        cmdSalir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnOpciones = new javax.swing.JMenu();
         mnReportes = new javax.swing.JMenu();
@@ -73,6 +78,15 @@ public class Menu extends javax.swing.JDialog {
         });
         jPanel1.add(cmdHacerPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 320, 70));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 0, 0));
+        jButton1.setText("REGISTRAR CLIENTE");
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 320, 70));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonald-fast-food-wallpaper-186080.jpg"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
+
         cmdSalir.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         cmdSalir.setForeground(new java.awt.Color(255, 0, 0));
         cmdSalir.setText("SALIR");
@@ -83,9 +97,6 @@ public class Menu extends javax.swing.JDialog {
             }
         });
         jPanel1.add(cmdSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 160, 40));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonald-fast-food-wallpaper-186080.jpg"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
 
@@ -110,6 +121,11 @@ public class Menu extends javax.swing.JDialog {
         mnCantidades.setText("Cantidades");
 
         mnCantidadVendidas.setText("Cantidades vendidas");
+        mnCantidadVendidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnCantidadVendidasActionPerformed(evt);
+            }
+        });
         mnCantidades.add(mnCantidadVendidas);
 
         mnCantidadClientes.setText("Cantidad de Clientes");
@@ -137,11 +153,11 @@ public class Menu extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnCerrarCesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCerrarCesionActionPerformed
-        
-        this.setVisible(false); 
+
+        this.setVisible(false);
         Principal p = new Principal();
-        p.setVisible(true);          
-                 
+        p.setVisible(true);
+
     }//GEN-LAST:event_mnCerrarCesionActionPerformed
 
     private void cmdSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSalirActionPerformed
@@ -154,6 +170,13 @@ public class Menu extends javax.swing.JDialog {
         Pedidos p = new Pedidos(null, true);
         p.setVisible(true);
     }//GEN-LAST:event_cmdHacerPedidoActionPerformed
+
+    private void mnCantidadVendidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCantidadVendidasActionPerformed
+
+        int cont;
+        cont = Helper.traerDatos(ruta).size();
+        Helper.mensaje(this, "El número de Comida ingresada es: " + cont, 1);
+    }//GEN-LAST:event_mnCantidadVendidasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +223,7 @@ public class Menu extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdHacerPedido;
     private javax.swing.JButton cmdSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
