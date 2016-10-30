@@ -42,10 +42,11 @@ public class Hamburguesas extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta,"");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,17 +200,17 @@ public class Hamburguesas extends javax.swing.JDialog {
 
     private void cmdH1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH1ActionPerformed
 
+        contH1++;
         String nombre = "MUSHROOM DIJON";
 
-        Comida p = new Comida(nombre, 9000, contH1,"Hamburguesas");
+        Comida p = new Comida(nombre, 9000, "Hamburguesas");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta,"Hamburguesas");
-
+        Helper.llenarTabla(tblTablaH, ruta);
 
     }//GEN-LAST:event_cmdH1ActionPerformed
 
@@ -220,7 +221,7 @@ public class Hamburguesas extends javax.swing.JDialog {
         i = tblTablaH.getSelectedRow();
 
         c = comidas.get(i);
-        
+
         cmdEliminar.setEnabled(true);
 
     }//GEN-LAST:event_tblTablaHMouseClicked
@@ -241,41 +242,39 @@ public class Hamburguesas extends javax.swing.JDialog {
         }
 
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta,"Hamburguesas");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
 
     }//GEN-LAST:event_cmdEliminarActionPerformed
 
     private void cmdH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH2ActionPerformed
-
+        contH2++;
         String nombre = "PREMIUM DELUXE";
 
-        Comida p = new Comida(nombre, 7000, contH2, "Hamburguesas");
+        Comida p = new Comida(nombre, 7000, "Hamburguesas");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta,"Hamburguesas");
+        Helper.llenarTabla(tblTablaH, ruta);
 
 
     }//GEN-LAST:event_cmdH2ActionPerformed
 
     private void cmdH3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH3ActionPerformed
-
-        
+        contH3++;
         String nombre = "CLUB HOUSE";
 
-        Comida p = new Comida(nombre, 8500, contH3, "Hamburguesas");
+        Comida p = new Comida(nombre, 8500, "Hamburguesas");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Hamburguesas");
-
+        Helper.llenarTabla(tblTablaH, ruta);
 
 
     }//GEN-LAST:event_cmdH3ActionPerformed

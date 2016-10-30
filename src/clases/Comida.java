@@ -23,10 +23,9 @@ public class Comida implements java.io.Serializable {
         this.Precio = precio;
     }
 
-    public Comida(String nombre, int precio, int cantidad, String categoria) {
+    public Comida(String nombre, int precio, String categoria) {
         this.nombre = nombre;
         this.Precio = precio;
-        cantidad = 1;
         this.categoria = categoria;
     }
 

@@ -34,7 +34,7 @@ public class Pollos extends javax.swing.JDialog {
     public Pollos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ruta = "src/datos/Comidas.txt"; 
+        ruta = "src/datos/Comidas.txt";
         try {
             comidas = Helper.traerDatos(ruta);
             salida = new ObjectOutputStream(new FileOutputStream(ruta));
@@ -42,7 +42,7 @@ public class Pollos extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaP, ruta,"");
+        Helper.llenarTabla(tblTablaP, ruta);
         cmdEliminar.setEnabled(false);
 
     }
@@ -196,49 +196,50 @@ public class Pollos extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdRegresarActionPerformed
 
     private void cmdP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdP3ActionPerformed
+        contP3++;
 
-        
         String nombre = "MC POLLO DELUXE";
 
-        Comida p = new Comida(nombre, 8500, contP3, "Pollos");
+        Comida p = new Comida(nombre, 8500, "Pollos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaP, ruta, "Pollos");
+        Helper.llenarTabla(tblTablaP, ruta);
 
 
     }//GEN-LAST:event_cmdP3ActionPerformed
 
     private void cmdP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdP1ActionPerformed
+        contP1++;
         String nombre = "CLUBHOUSE POLLO CRISPY";
 
-        Comida p = new Comida(nombre, 9000, contP1,"Pollos");
+        Comida p = new Comida(nombre, 9000, "Pollos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaP, ruta,"Pollos");
+        Helper.llenarTabla(tblTablaP, ruta);
 
 
     }//GEN-LAST:event_cmdP1ActionPerformed
 
     private void cmdP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdP2ActionPerformed
-
+        contP2++;
         String nombre = "POLLO JR";
 
-        Comida p = new Comida(nombre, 7000, contP2, "Pollos");
+        Comida p = new Comida(nombre, 7000, "Pollos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaP, ruta,"Pollos");
+        Helper.llenarTabla(tblTablaP, ruta);
 
     }//GEN-LAST:event_cmdP2ActionPerformed
 
@@ -257,7 +258,7 @@ public class Pollos extends javax.swing.JDialog {
         }
 
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaP, ruta,"");
+        Helper.llenarTabla(tblTablaP, ruta);
         cmdEliminar.setEnabled(false);
     }//GEN-LAST:event_cmdEliminarActionPerformed
 

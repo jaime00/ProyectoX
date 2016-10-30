@@ -41,7 +41,7 @@ public class Acompañamientos extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta, "");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
     }
 
@@ -191,17 +191,17 @@ public class Acompañamientos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdA1ActionPerformed
-
+        contA1++;
         String nombre = "PAPAS FRITAS";
 
-        Comida p = new Comida(nombre, 4000, contA1, "Acompañamientos");
+        Comida p = new Comida(nombre, 4000, "Acompañamientos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Acompañamientos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Acompañamientos");
+        Helper.llenarTabla(tblTablaH, ruta);
     }//GEN-LAST:event_cmdA1ActionPerformed
 
     private void tblTablaHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaHMouseClicked
@@ -229,7 +229,7 @@ public class Acompañamientos extends javax.swing.JDialog {
         }
 
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta, "Acompañamientos");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
     }//GEN-LAST:event_cmdEliminarActionPerformed
 
@@ -239,31 +239,31 @@ public class Acompañamientos extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdRegresarActionPerformed
 
     private void cmdA2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdA2ActionPerformed
-
+        contA2++;
         String nombre = "ENSALADA";
 
-        Comida p = new Comida(nombre, 4000, contA2, "Acompañamientos");
+        Comida p = new Comida(nombre, 4000, "Acompañamientos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Acompañamientos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Acompañamientos");
+        Helper.llenarTabla(tblTablaH, ruta);
     }//GEN-LAST:event_cmdA2ActionPerformed
 
     private void cmdA3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdA3ActionPerformed
-
+        contA3++;
         String nombre = "McFLURRY OREO";
 
-        Comida p = new Comida(nombre, 3000, contA3, "Acompañamientos");
+        Comida p = new Comida(nombre, 3000, "Acompañamientos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Acompañamientos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Acompañamientos");
+        Helper.llenarTabla(tblTablaH, ruta);
     }//GEN-LAST:event_cmdA3ActionPerformed
 
     /**

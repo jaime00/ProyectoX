@@ -41,7 +41,7 @@ public class Desayunos extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta, "");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
     }
 
@@ -196,47 +196,47 @@ public class Desayunos extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdRegresarActionPerformed
 
     private void cmdD3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdD3ActionPerformed
-
+        contD3++;
         String nombre = "PANCAKES";
 
-        Comida p = new Comida(nombre, 8000, contD3, "Desayunos");
+        Comida p = new Comida(nombre, 8000, "Desayunos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Desayunos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Desayunos");
+        Helper.llenarTabla(tblTablaH, ruta);
 
     }//GEN-LAST:event_cmdD3ActionPerformed
 
     private void cmdD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdD1ActionPerformed
-
+        contD1++;
         String nombre = "DESAYUNO COMPLETO";
 
-        Comida p = new Comida(nombre, 12000, contD1, "Desayunos");
+        Comida p = new Comida(nombre, 12000, "Desayunos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Desayunos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Desayunos");
+        Helper.llenarTabla(tblTablaH, ruta);
 
     }//GEN-LAST:event_cmdD1ActionPerformed
 
     private void cmdD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdD2ActionPerformed
-
+        contD2++;
         String nombre = "HUEVOS PERICOS";
 
-        Comida p = new Comida(nombre, 12000, contD2, "Desayunos");
+        Comida p = new Comida(nombre, 12000,"Desayunos");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Desayunos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Desayunos");
+        Helper.llenarTabla(tblTablaH, ruta);
 
     }//GEN-LAST:event_cmdD2ActionPerformed
 
@@ -266,7 +266,7 @@ public class Desayunos extends javax.swing.JDialog {
         
 
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta, "Hamburguesas");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
     }//GEN-LAST:event_cmdEliminarActionPerformed
 

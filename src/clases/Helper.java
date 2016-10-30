@@ -60,12 +60,10 @@ public class Helper {
             tabla.setValueAt(i + 1, i, 0);
             tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
-  
-
+            tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
         }
     }
-
-        public static void llenarTabla(JTable tabla, String ruta, String categoria) {
+    public static void llenarTabla(JTable tabla, String ruta,int cant) {
         DefaultTableModel tm;
         int nf;
         ArrayList<Comida> comidas = traerDatos(ruta);
@@ -77,12 +75,26 @@ public class Helper {
             tabla.setValueAt(i + 1, i, 0);
             tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
+            tabla.setValueAt(cant, i, 3);
             tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
-            
-            
-
-        }
+           }
     }
+        public static void llenarTabla(JTable tabla, String ruta) {
+        DefaultTableModel tm;
+        int nf;
+        ArrayList<Comida> comidas = traerDatos(ruta);
+        tm = (DefaultTableModel) tabla.getModel();
+        limpiadoTabla(tabla);
+        nf = comidas.size();
+        tm.setRowCount(nf);
+        for (int i = 0; i < nf; i++) {
+            tabla.setValueAt(i + 1, i, 0);
+            tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
+            tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
+            tabla.setValueAt(comidas.get(i).getCategoria(),i,4);
+           }
+    }
+    
     public static ArrayList traerDatos(String ruta) {
         FileInputStream archivo;
         ObjectInputStream entrada;
@@ -106,7 +118,7 @@ public class Helper {
     }
 
     public static void volcado(ObjectOutputStream salida, ArrayList comidas) {
-        for (int i = 0; i <comidas.size(); i++) {
+        for (int i = 0; i < comidas.size(); i++) {
             try {
                 salida.writeObject(comidas.get(i));
             } catch (IOException ex) {
@@ -115,6 +127,5 @@ public class Helper {
 
         }
     }
-
 
 }

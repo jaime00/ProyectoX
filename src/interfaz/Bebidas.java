@@ -26,9 +26,9 @@ public class Bebidas extends javax.swing.JDialog {
     String ruta;
     ObjectOutputStream salida;
     ArrayList<Comida> comidas;
-    int contS = 0;
-    int contC = 0;
-    int contT = 0;
+    int contB1 = 0;
+    int contB2 = 0;
+    int contB3 = 0;
 
     public Bebidas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -41,7 +41,7 @@ public class Bebidas extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta, "");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
     }
 
@@ -66,7 +66,7 @@ public class Bebidas extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         cmdB2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        cmdH3 = new javax.swing.JButton();
+        cmdB3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -161,14 +161,14 @@ public class Bebidas extends javax.swing.JDialog {
         jLabel4.setText("FUZE TEA");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, -1, -1));
 
-        cmdH3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fuze-tea.jpg"))); // NOI18N
-        cmdH3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        cmdH3.addActionListener(new java.awt.event.ActionListener() {
+        cmdB3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fuze-tea.jpg"))); // NOI18N
+        cmdB3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cmdB3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdH3ActionPerformed(evt);
+                cmdB3ActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdH3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 200, 150));
+        jPanel1.add(cmdB3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 200, 150));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/McDonald's_Golden_Arches.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 500, 470));
@@ -189,17 +189,17 @@ public class Bebidas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdB1ActionPerformed
-
+        contB1++;
         String nombre = "COCA-COLA";
 
-        Comida p = new Comida(nombre, 4000, contC, "Bebidas");
+        Comida p = new Comida(nombre, 4000, "Bebidas");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Bebidas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Bebidas");
+        Helper.llenarTabla(tblTablaH, ruta);
 
     }//GEN-LAST:event_cmdB1ActionPerformed
 
@@ -220,16 +220,15 @@ public class Bebidas extends javax.swing.JDialog {
         ArrayList<Comida> comidas = Helper.traerDatos(ruta);
         i = tblTablaH.getSelectedRow();
         comidas.remove(i);
-        
+
         try {
             salida = new ObjectOutputStream(new FileOutputStream(ruta));
         } catch (IOException ex) {
             Logger.getLogger(Bebidas.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
 
         Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta, "Bebidas");
+        Helper.llenarTabla(tblTablaH, ruta);
         cmdEliminar.setEnabled(false);
     }//GEN-LAST:event_cmdEliminarActionPerformed
 
@@ -239,34 +238,34 @@ public class Bebidas extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdRegresarActionPerformed
 
     private void cmdB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdB2ActionPerformed
-
+        contB2++;
         String nombre = "SPRITE";
 
-        Comida p = new Comida(nombre, 4000, contS, "Bebidas");
+        Comida p = new Comida(nombre, 4000, "Bebidas");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Bebidas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Bebidas");
+        Helper.llenarTabla(tblTablaH, ruta);
 
     }//GEN-LAST:event_cmdB2ActionPerformed
 
-    private void cmdH3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH3ActionPerformed
-
+    private void cmdB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdB3ActionPerformed
+        contB3++;
         String nombre = "FUZE TEA";
 
-        Comida p = new Comida(nombre, 3000, contT, "Bebidas");
+        Comida p = new Comida(nombre, 3000, "Bebidas");
 
         try {
             p.guardar(salida);
         } catch (IOException ex) {
             Logger.getLogger(Bebidas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Helper.llenarTabla(tblTablaH, ruta, "Bebidas");
+        Helper.llenarTabla(tblTablaH, ruta);
 
-    }//GEN-LAST:event_cmdH3ActionPerformed
+    }//GEN-LAST:event_cmdB3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,8 +312,8 @@ public class Bebidas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdB1;
     private javax.swing.JButton cmdB2;
+    private javax.swing.JButton cmdB3;
     private javax.swing.JButton cmdEliminar;
-    private javax.swing.JButton cmdH3;
     private javax.swing.JButton cmdRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
