@@ -18,21 +18,22 @@ public class Cliente implements java.io.Serializable {
     private String apellido;
     private String tarjeta;
 
-    public Cliente(String cedula, String nombre, String apellido, String targeta) {
+    public Cliente(String cedula, String nombre, String apellido, String tarjeta) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.tarjeta = targeta;
+        this.tarjeta = tarjeta;
     }
 
-    public String getSexo() {
+    public String getTarjeta() {
         return tarjeta;
     }
 
-    public void setSexo(String sexo) {
-        this.tarjeta = sexo;
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
     }
 
+  
     public String getCedula() {
         return cedula;
     }

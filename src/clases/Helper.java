@@ -63,7 +63,8 @@ public class Helper {
             tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
         }
     }
-    public static void llenarTabla(JTable tabla, String ruta,int cant) {
+
+    public static void llenarTabla(JTable tabla, String ruta, int cant) {
         DefaultTableModel tm;
         int nf;
         ArrayList<Comida> comidas = traerDatos(ruta);
@@ -77,9 +78,10 @@ public class Helper {
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
             tabla.setValueAt(cant, i, 3);
             tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
-           }
+        }
     }
-        public static void llenarTabla(JTable tabla, String ruta) {
+
+    public static void llenarTabla(JTable tabla, String ruta) {
         DefaultTableModel tm;
         int nf;
         ArrayList<Comida> comidas = traerDatos(ruta);
@@ -91,10 +93,10 @@ public class Helper {
             tabla.setValueAt(i + 1, i, 0);
             tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
-            tabla.setValueAt(comidas.get(i).getCategoria(),i,4);
-           }
+            tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
+        }
     }
-    
+
     public static ArrayList traerDatos(String ruta) {
         FileInputStream archivo;
         ObjectInputStream entrada;
@@ -128,4 +130,73 @@ public class Helper {
         }
     }
 
+// METODOS DEL CLIENTE:
+    public static ArrayList traerDatosCliente(String ruta) {
+        FileInputStream archivo;
+        ObjectInputStream entrada;
+        ArrayList clientes = new ArrayList();
+        Object cl;
+
+        try {
+            archivo = new FileInputStream(ruta);
+            entrada = new ObjectInputStream(archivo);
+            while ((cl = entrada.readObject()) != null) {
+                clientes.add(cl);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return clientes;
+    }
+
+    public static void volcadoCliente(ObjectOutputStream salida, ArrayList clientes) {
+        for (int i = 0; i < clientes.size(); i++) {
+            try {
+                salida.writeObject(clientes.get(i));
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }
+    }
+
+    public static void llenarTablaCliente1(JTable tabla, String ruta) {
+        DefaultTableModel tm;
+        int nf;
+        ArrayList<Cliente> clientes = traerDatosCliente(ruta);
+        tm = (DefaultTableModel) tabla.getModel();
+        limpiadoTabla(tabla);
+        nf = clientes.size();
+        tm.setRowCount(nf);
+        for (int i = 0; i < nf; i++) {
+            tabla.setValueAt(i + 1, i, 0);
+            tabla.setValueAt(clientes.get(i).getCedula(), i, 1);
+            tabla.setValueAt(clientes.get(i).getNombre(), i, 2);
+            tabla.setValueAt(clientes.get(i).getApellido(), i, 3);
+            tabla.setValueAt(clientes.get(i).getTarjeta(), i, 4);
+        }
+    }
+
+    public static boolean buscarClienteCedula(String cedula, String ruta) {
+        ArrayList<Cliente> clientes = traerDatosCliente(ruta);
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCedula().equals(cedula)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Cliente traerClienteCedula(String cedula, String ruta) {
+        ArrayList<Cliente> clientes = traerDatosCliente(ruta);
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCedula().equals(cedula)) {
+                return clientes.get(i);
+            }
+
+        }
+        return null;
+    }
 }

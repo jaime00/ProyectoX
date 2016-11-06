@@ -82,6 +82,11 @@ public class Menu extends javax.swing.JDialog {
         jButton1.setForeground(new java.awt.Color(255, 0, 0));
         jButton1.setText("REGISTRAR CLIENTE");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 320, 70));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonald-fast-food-wallpaper-186080.jpg"))); // NOI18N
@@ -111,6 +116,11 @@ public class Menu extends javax.swing.JDialog {
         mnListado.setText("Listado");
 
         mnListadoVentasTotal.setText("Listado de Ventas Total");
+        mnListadoVentasTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnListadoVentasTotalActionPerformed(evt);
+            }
+        });
         mnListado.add(mnListadoVentasTotal);
 
         mnListadoClientes.setText("Listado de Clientes");
@@ -177,6 +187,18 @@ public class Menu extends javax.swing.JDialog {
         cont = Helper.traerDatos(ruta).size();
         Helper.mensaje(this, "El número de Comida ingresada es: " + cont, 1);
     }//GEN-LAST:event_mnCantidadVendidasActionPerformed
+
+    private void mnListadoVentasTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnListadoVentasTotalActionPerformed
+
+        ListadoPorVentasTotal l = new ListadoPorVentasTotal(null, true);
+        l.setVisible(true);
+    }//GEN-LAST:event_mnListadoVentasTotalActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        Cliente c = new  Cliente(null, true);
+        c.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
