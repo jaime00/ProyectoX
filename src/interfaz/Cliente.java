@@ -264,7 +264,7 @@ public class Cliente extends javax.swing.JDialog {
         Cliente cl;
         if (Helper.buscarClienteCedula(cedula, ruta)) {
             
-            cl = Helper.traerClienteCedula(cedula, ruta) ;
+            cl = Helper.traerDatosCliente(ruta);
             
             txtNombre.setText(cl.getNombre());
             txtApellido.setText(cl.getApellido());
