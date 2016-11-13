@@ -5,7 +5,9 @@
  */
 package interfaz;
 
+import clases.Cliente;
 import clases.Helper;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -19,19 +21,29 @@ import javax.swing.JOptionPane;
  *
  * @author jaime
  */
-public class Cliente extends javax.swing.JDialog {
+public class Agregar extends javax.swing.JDialog {
 
     /**
      * Creates new form Cliente
      */
     String ruta;
     ObjectOutputStream salida;
-    ArrayList<Cliente> clientes;
+    ArrayList<Agregar> clientes;
     int aux = 0;
 
-    public Cliente(java.awt.Frame parent, boolean modal) {
+    public Agregar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        JButton botonesH[] = {cmdBuscar, cmdCancelar};
+        JButton botonesD[] = {cmdGuardar, cmdEliminar};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+
+        txtNombre.setEnabled(false);
+        txtCedula.setEnabled(true);
+        txtApellido.setEnabled(false);
+        txtTarjeta.setEnabled(false);
 
         ruta = "src/datos/Clientes.txt";
         try {
@@ -41,7 +53,7 @@ public class Cliente extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
         Helper.volcadoCliente(salida, clientes);
-        Helper.llenarTablaCliente1(tblTablaPersonas, ruta);
+        Helper.llenarTablaCliente(tblTablaPersonas, ruta);
     }
 
     /**
@@ -64,7 +76,7 @@ public class Cliente extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtTarjeta = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        cmdGuarda = new javax.swing.JButton();
+        cmdGuardar = new javax.swing.JButton();
         cmdEliminar = new javax.swing.JButton();
         cmdCancelar = new javax.swing.JButton();
         cmdBuscar = new javax.swing.JButton();
@@ -76,18 +88,13 @@ public class Cliente extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Persona"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Basicos"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("Cédula:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 20));
 
-        txtCedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaActionPerformed(evt);
-            }
-        });
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
@@ -133,13 +140,28 @@ public class Cliente extends javax.swing.JDialog {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cmdGuarda.setText("Guardar");
-        jPanel6.add(cmdGuarda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 100, -1));
+        cmdGuardar.setText("Guardar");
+        cmdGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdGuardarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(cmdGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 100, -1));
 
         cmdEliminar.setText("Eliminar");
+        cmdEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdEliminarActionPerformed(evt);
+            }
+        });
         jPanel6.add(cmdEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, -1));
 
         cmdCancelar.setText("Cancelar");
+        cmdCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCancelarActionPerformed(evt);
+            }
+        });
         jPanel6.add(cmdCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 100, -1));
 
         cmdBuscar.setText("Buscar");
@@ -200,11 +222,6 @@ public class Cliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
-
-
-    }//GEN-LAST:event_txtCedulaActionPerformed
-
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
 
         char c = evt.getKeyChar();
@@ -255,27 +272,173 @@ public class Cliente extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTarjetaKeyTyped
 
     private void tblTablaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaPersonasMouseClicked
+        int i;
+        Cliente c;
+        ArrayList<Cliente> clientes = Helper.traerDatosCliente(ruta);
+        i = tblTablaPersonas.getSelectedRow();
 
+        c = clientes.get(i);
+
+        txtCedula.setText(c.getCedula());
+        txtNombre.setText(c.getNombre());
+        txtApellido.setText(c.getApellido());
+        txtTarjeta.setText(c.getTarjeta());
+
+        aux = 1;
+        JButton botonesH[] = {cmdEliminar, cmdGuardar, cmdCancelar};
+        JButton botonesD[] = {cmdBuscar};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+        txtCedula.setEnabled(false);
+        txtNombre.setEnabled(true);
+        txtApellido.setEnabled(true);
+        txtTarjeta.setEnabled(true);
     }//GEN-LAST:event_tblTablaPersonasMouseClicked
 
     private void cmdBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBuscarActionPerformed
         String cedula;
         cedula = txtCedula.getText();
-        Cliente cl;
+        Cliente c;
+        String res;
         if (Helper.buscarClienteCedula(cedula, ruta)) {
-            
-            cl = Helper.traerDatosCliente(ruta);
-            
-            txtNombre.setText(cl.getNombre());
-            txtApellido.setText(cl.getApellido());
-            txtTarjeta.setText(cl.getTarjeta());
+            c = Helper.traerClienteCedula(cedula, ruta);
+
+            txtNombre.setText(c.getNombre());
+            txtApellido.setText(c.getApellido());
+            txtTarjeta.setText(c.getTarjeta());
+
             aux = 1;
-            
+            txtNombre.setEnabled(true);
+            txtCedula.setEnabled(false);
+            txtApellido.setEnabled(true);
+            txtTarjeta.setEnabled(true);
+
         } else {
+
             txtNombre.requestFocusInWindow();
             aux = 0;
+            txtNombre.setEnabled(true);
+            txtCedula.setEnabled(false);
+            txtApellido.setEnabled(true);
+            txtTarjeta.setEnabled(true);
+
         }
+        JButton botonesH[] = {cmdGuardar, cmdCancelar, cmdEliminar};
+        JButton botonesD[] = {cmdBuscar};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
     }//GEN-LAST:event_cmdBuscarActionPerformed
+
+    private void cmdGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarActionPerformed
+        String cedula, nombre, apellido, tarjeta;
+        cedula = txtCedula.getText();
+        nombre = txtNombre.getText();
+        apellido = txtApellido.getText();
+        tarjeta = txtTarjeta.getText();
+        ArrayList<Cliente> cliientesModificado;
+        try {
+            if (aux == 0) {
+
+                Cliente c = new Cliente(cedula, nombre, apellido, tarjeta);
+
+                c.guardar(salida);
+                txtNombre.setEnabled(false);
+                txtCedula.setEnabled(true);
+                txtApellido.setEnabled(false);
+                txtTarjeta.setEnabled(false);
+
+                JButton botonesH[] = {cmdBuscar, cmdCancelar};
+                JButton botonesD[] = {cmdEliminar, cmdGuardar};
+
+                Helper.habilitarBotones(botonesH);
+                Helper.deshabilitarBotones(botonesD);
+            } else {
+                cliientesModificado = Helper.modificarCliente(ruta, cedula, nombre, apellido, tarjeta);
+                salida = new ObjectOutputStream(new FileOutputStream(ruta));
+                Helper.volcado(salida, cliientesModificado);
+                aux = 0;
+                Helper.mensaje(this, "Persona Actualizada Correctamente!", 1);
+                txtNombre.setEnabled(false);
+                txtCedula.setEnabled(true);
+                txtApellido.setEnabled(false);
+                txtTarjeta.setEnabled(false);
+
+                JButton botonesH[] = {cmdBuscar, cmdCancelar};
+                JButton botonesD[] = {cmdEliminar, cmdGuardar};
+
+                Helper.habilitarBotones(botonesH);
+                Helper.deshabilitarBotones(botonesD);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Helper.llenarTablaCliente(tblTablaPersonas, ruta);
+
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtTarjeta.setText("");
+        txtCedula.requestFocusInWindow();
+    }//GEN-LAST:event_cmdGuardarActionPerformed
+
+    private void cmdEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEliminarActionPerformed
+        int i, op;
+        op = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar a esta Cliente?", "Eliminar", JOptionPane.YES_NO_OPTION);
+
+        ArrayList<Cliente> clientes = Helper.traerDatosCliente(ruta);
+        if (op == JOptionPane.YES_OPTION) {
+            i = tblTablaPersonas.getSelectedRow();
+            clientes.remove(i);
+            try {
+                salida = new ObjectOutputStream(new FileOutputStream(ruta));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Helper.volcadoCliente(salida, clientes);
+            Helper.llenarTablaCliente(tblTablaPersonas, ruta);
+            txtCedula.setText("");
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtTarjeta.setText("");
+            txtCedula.requestFocusInWindow();
+        }
+
+        JButton botonesH[] = {cmdBuscar, cmdCancelar};
+        JButton botonesD[] = {cmdGuardar, cmdEliminar};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+
+        txtNombre.setEnabled(false);
+        txtCedula.setEnabled(true);
+        txtApellido.setEnabled(false);
+        txtTarjeta.setEnabled(false);
+    }//GEN-LAST:event_cmdEliminarActionPerformed
+
+    private void cmdCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelarActionPerformed
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtTarjeta.setText("");
+
+        txtCedula.requestFocusInWindow();
+        JButton botonesH[] = {cmdBuscar, cmdCancelar};
+        JButton botonesD[] = {cmdGuardar, cmdEliminar};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+
+        txtNombre.setEnabled(false);
+        txtCedula.setEnabled(true);
+        txtApellido.setEnabled(false);
+        txtTarjeta.setEnabled(false);
+    }//GEN-LAST:event_cmdCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,20 +457,21 @@ public class Cliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Cliente dialog = new Cliente(new javax.swing.JFrame(), true);
+                Agregar dialog = new Agregar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -323,7 +487,7 @@ public class Cliente extends javax.swing.JDialog {
     private javax.swing.JButton cmdBuscar;
     private javax.swing.JButton cmdCancelar;
     private javax.swing.JButton cmdEliminar;
-    private javax.swing.JButton cmdGuarda;
+    private javax.swing.JButton cmdGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

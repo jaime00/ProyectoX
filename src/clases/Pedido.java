@@ -14,12 +14,23 @@ import java.io.ObjectOutputStream;
  */
 public class Pedido implements java.io.Serializable {
 
+    String nombre;
     Cliente cliente;
     Comida comida;
 
-    public Pedido(Cliente cliente, Comida comida) {
+    public Pedido(String nombre, Cliente cliente, Comida comida) {
+        this.nombre = nombre;
         this.cliente = cliente;
         this.comida = comida;
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Cliente getCliente() {

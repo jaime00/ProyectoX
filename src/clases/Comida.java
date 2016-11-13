@@ -17,16 +17,21 @@ public class Comida implements java.io.Serializable {
     String nombre;
     int Precio;
     String categoria;
+    int cant;
 
-    public Comida(String nombre, int precio) {
+    public Comida(String nombre, int precio, int cant, String categoria) {
         this.nombre = nombre;
         this.Precio = precio;
+        this.cant = cant;
+        this.categoria = categoria;
     }
 
-    public Comida(String nombre, int precio, String categoria) {
-        this.nombre = nombre;
-        this.Precio = precio;
-        this.categoria = categoria;
+    public int getCant() {
+        return cant;
+    }
+
+    public void setCant(int cant) {
+        this.cant = cant;
     }
 
     public String getCategoria() {
@@ -36,7 +41,6 @@ public class Comida implements java.io.Serializable {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-    
 
     public String getNombre() {
         return nombre;

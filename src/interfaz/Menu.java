@@ -23,6 +23,7 @@ public class Menu extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         ruta = "src/datos/Comidas.txt";
+
     }
 
     /**
@@ -36,9 +37,9 @@ public class Menu extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        cmdHacerPedido = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        cmdRegistrarComida = new javax.swing.JButton();
+        cmdRegistrarCliente = new javax.swing.JButton();
+        cmdRegistrarPedido = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         cmdSalir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -60,34 +61,42 @@ public class Menu extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Papas.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 30, 50));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 30, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pizza_icon-icons.com_54377.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, 50));
-
-        cmdHacerPedido.setBackground(new java.awt.Color(255, 255, 255));
-        cmdHacerPedido.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        cmdHacerPedido.setForeground(new java.awt.Color(255, 0, 0));
-        cmdHacerPedido.setText("  HACER PEDIDO  ");
-        cmdHacerPedido.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
-        cmdHacerPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cmdHacerPedido.addActionListener(new java.awt.event.ActionListener() {
+        cmdRegistrarComida.setBackground(new java.awt.Color(255, 255, 255));
+        cmdRegistrarComida.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdRegistrarComida.setForeground(new java.awt.Color(255, 0, 0));
+        cmdRegistrarComida.setText("    REGISTRAR COMIDA");
+        cmdRegistrarComida.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
+        cmdRegistrarComida.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cmdRegistrarComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdHacerPedidoActionPerformed(evt);
+                cmdRegistrarComidaActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdHacerPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 320, 70));
+        jPanel1.add(cmdRegistrarComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 320, 70));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 0, 0));
-        jButton1.setText("REGISTRAR CLIENTE");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cmdRegistrarCliente.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdRegistrarCliente.setForeground(new java.awt.Color(255, 0, 0));
+        cmdRegistrarCliente.setText("REGISTRAR CLIENTE");
+        cmdRegistrarCliente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
+        cmdRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cmdRegistrarClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 320, 70));
+        jPanel1.add(cmdRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 320, 70));
+
+        cmdRegistrarPedido.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdRegistrarPedido.setForeground(new java.awt.Color(255, 0, 0));
+        cmdRegistrarPedido.setText("REGISTRAR PEDIDO");
+        cmdRegistrarPedido.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
+        cmdRegistrarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdRegistrarPedidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdRegistrarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 320, 70));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonald-fast-food-wallpaper-186080.jpg"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
@@ -175,11 +184,10 @@ public class Menu extends javax.swing.JDialog {
         System.exit(0);
     }//GEN-LAST:event_cmdSalirActionPerformed
 
-    private void cmdHacerPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdHacerPedidoActionPerformed
-
+    private void cmdRegistrarComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegistrarComidaActionPerformed
         Pedidos p = new Pedidos(null, true);
         p.setVisible(true);
-    }//GEN-LAST:event_cmdHacerPedidoActionPerformed
+    }//GEN-LAST:event_cmdRegistrarComidaActionPerformed
 
     private void mnCantidadVendidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCantidadVendidasActionPerformed
 
@@ -194,11 +202,17 @@ public class Menu extends javax.swing.JDialog {
         l.setVisible(true);
     }//GEN-LAST:event_mnListadoVentasTotalActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cmdRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegistrarClienteActionPerformed
 
-        Cliente c = new  Cliente(null, true);
+        Agregar c = new Agregar(null, true);
         c.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_cmdRegistrarClienteActionPerformed
+
+    private void cmdRegistrarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegistrarPedidoActionPerformed
+        RegistrarPedido rp = new RegistrarPedido(null, true);
+        rp.setVisible(true);
+    }//GEN-LAST:event_cmdRegistrarPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,10 +257,10 @@ public class Menu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cmdHacerPedido;
+    private javax.swing.JButton cmdRegistrarCliente;
+    private javax.swing.JButton cmdRegistrarComida;
+    private javax.swing.JButton cmdRegistrarPedido;
     private javax.swing.JButton cmdSalir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;

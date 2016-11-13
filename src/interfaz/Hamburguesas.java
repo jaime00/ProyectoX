@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,9 +28,10 @@ public class Hamburguesas extends javax.swing.JDialog {
     String ruta;
     ObjectOutputStream salida;
     ArrayList<Comida> comidas;
-    int contH1 = 0;
-    int contH2 = 0;
-    int contH3 = 0;
+    int contH1;
+    int contH2;
+    int contH3;
+    int aux = 0;
 
     public Hamburguesas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -203,14 +205,18 @@ public class Hamburguesas extends javax.swing.JDialog {
         contH1++;
         String nombre = "MUSHROOM DIJON";
 
-        Comida p = new Comida(nombre, 9000, "Hamburguesas");
+        if (contH1 > 0) {
+            Comida c = new Comida(nombre, 9000, 1, "Hamburguesas");
+            try {
 
-        try {
-            p.guardar(salida);
-        } catch (IOException ex) {
-            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
+                c.guardar(salida);
+            } catch (IOException ex) {
+                Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Helper.llenarTabla(tblTablaH, ruta);
+
         }
-        Helper.llenarTabla(tblTablaH, ruta);
+
 
     }//GEN-LAST:event_cmdH1ActionPerformed
 
@@ -227,7 +233,7 @@ public class Hamburguesas extends javax.swing.JDialog {
     }//GEN-LAST:event_tblTablaHMouseClicked
 
     private void cmdEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEliminarActionPerformed
-        int i, op;
+        int i;
 
         ArrayList<Comida> comidas = Helper.traerDatos(ruta);
         i = tblTablaH.getSelectedRow();
@@ -248,32 +254,56 @@ public class Hamburguesas extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdEliminarActionPerformed
 
     private void cmdH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH2ActionPerformed
+
         contH2++;
         String nombre = "PREMIUM DELUXE";
 
-        Comida p = new Comida(nombre, 7000, "Hamburguesas");
-
+        ArrayList<Comida> comidasModificado;
         try {
-            p.guardar(salida);
+            if (contH2 == 1) {
+                Comida c2 = new Comida(nombre, 7000, 1, "Hamburguesas");
+
+                c2.guardar(salida);
+
+            } else {
+                comidasModificado = Helper.modificarComida(ruta, nombre, contH2);
+                salida = new ObjectOutputStream(new FileOutputStream(ruta));
+                Helper.volcado(salida, comidasModificado);
+
+            }
         } catch (IOException ex) {
-            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NullPointerException ex) {
         }
+
         Helper.llenarTabla(tblTablaH, ruta);
 
 
     }//GEN-LAST:event_cmdH2ActionPerformed
 
     private void cmdH3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH3ActionPerformed
+
         contH3++;
         String nombre = "CLUB HOUSE";
-
-        Comida p = new Comida(nombre, 8500, "Hamburguesas");
-
+        ArrayList<Comida> comidasModificado;
         try {
-            p.guardar(salida);
+            if (contH3 == 1) {
+
+                Comida c = new Comida(nombre, 8500, 2, "Hamburguesas");
+
+                c.guardar(salida);
+
+            } else {
+                comidasModificado = Helper.modificarComida(ruta, nombre, contH3);
+                salida = new ObjectOutputStream(new FileOutputStream(ruta));
+                Helper.volcado(salida, comidasModificado);
+
+            }
         } catch (IOException ex) {
-            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NullPointerException ex) {
         }
+
         Helper.llenarTabla(tblTablaH, ruta);
 
 

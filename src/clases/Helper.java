@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +34,20 @@ public class Helper {
             case 3:
                 JOptionPane.showMessageDialog(ventana, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
                 break;
+
+        }
+    }
+
+    public static void habilitarBotones(JButton[] botones) {
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setEnabled(true);
+
+        }
+    }
+
+    public static void deshabilitarBotones(JButton[] botones) {
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setEnabled(false);
 
         }
     }
@@ -93,6 +108,7 @@ public class Helper {
             tabla.setValueAt(i + 1, i, 0);
             tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
+            tabla.setValueAt(comidas.get(i).getCant(), i, 3);
             tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
         }
     }
@@ -162,7 +178,7 @@ public class Helper {
         }
     }
 
-    public static void llenarTablaCliente1(JTable tabla, String ruta) {
+    public static void llenarTablaCliente(JTable tabla, String ruta) {
         DefaultTableModel tm;
         int nf;
         ArrayList<Cliente> clientes = traerDatosCliente(ruta);
@@ -196,6 +212,35 @@ public class Helper {
                 return clientes.get(i);
             }
 
+        }
+        return null;
+    }
+
+    public static ArrayList<Cliente> modificarCliente(String ruta, String cedula, String nombre, String apellido, String tarjeta) {
+        ArrayList<Cliente> clientes = traerDatos(ruta);
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCedula().equals(cedula)) {
+                clientes.get(i).setNombre(nombre);
+                clientes.get(i).setApellido(apellido);
+                clientes.get(i).setTarjeta(tarjeta);
+
+                return clientes;
+            }
+
+        }
+        return null;
+    }
+
+    public static ArrayList<Comida> modificarComida(String ruta, String nombre, int cant) {
+        ArrayList<Comida> comidas = traerDatos(ruta);
+        for (int i = 0; i < comidas.size(); i++) {
+            if (comidas.get(i).getNombre().equalsIgnoreCase(nombre)) {
+                if (comidas.get(i).getCant() >= 1) {
+                    comidas.get(i).setCant(cant);
+                }
+
+                return comidas;
+            }
         }
         return null;
     }
