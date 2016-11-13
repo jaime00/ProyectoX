@@ -108,7 +108,6 @@ public class Helper {
             tabla.setValueAt(i + 1, i, 0);
             tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
-            tabla.setValueAt(comidas.get(i).getCant(), i, 3);
             tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
         }
     }
@@ -231,17 +230,4 @@ public class Helper {
         return null;
     }
 
-    public static ArrayList<Comida> modificarComida(String ruta, String nombre, int cant) {
-        ArrayList<Comida> comidas = traerDatos(ruta);
-        for (int i = 0; i < comidas.size(); i++) {
-            if (comidas.get(i).getNombre().equalsIgnoreCase(nombre)) {
-                if (comidas.get(i).getCant() >= 1) {
-                    comidas.get(i).setCant(cant);
-                }
-
-                return comidas;
-            }
-        }
-        return null;
-    }
 }

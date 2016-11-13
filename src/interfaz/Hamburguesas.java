@@ -205,17 +205,14 @@ public class Hamburguesas extends javax.swing.JDialog {
         contH1++;
         String nombre = "MUSHROOM DIJON";
 
-        if (contH1 > 0) {
-            Comida c = new Comida(nombre, 9000, 1, "Hamburguesas");
-            try {
+        Comida c = new Comida(nombre, 9000, "Hamburguesas");
+        try {
 
-                c.guardar(salida);
-            } catch (IOException ex) {
-                Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Helper.llenarTabla(tblTablaH, ruta);
-
+            c.guardar(salida);
+        } catch (IOException ex) {
+            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Helper.llenarTabla(tblTablaH, ruta);
 
 
     }//GEN-LAST:event_cmdH1ActionPerformed
@@ -258,22 +255,12 @@ public class Hamburguesas extends javax.swing.JDialog {
         contH2++;
         String nombre = "PREMIUM DELUXE";
 
-        ArrayList<Comida> comidasModificado;
+        Comida c = new Comida(nombre, 7000, "Hamburguesas");
+
         try {
-            if (contH2 == 1) {
-                Comida c2 = new Comida(nombre, 7000, 1, "Hamburguesas");
-
-                c2.guardar(salida);
-
-            } else {
-                comidasModificado = Helper.modificarComida(ruta, nombre, contH2);
-                salida = new ObjectOutputStream(new FileOutputStream(ruta));
-                Helper.volcado(salida, comidasModificado);
-
-            }
+            c.guardar(salida);
         } catch (IOException ex) {
-            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NullPointerException ex) {
+            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         Helper.llenarTabla(tblTablaH, ruta);
@@ -285,23 +272,12 @@ public class Hamburguesas extends javax.swing.JDialog {
 
         contH3++;
         String nombre = "CLUB HOUSE";
-        ArrayList<Comida> comidasModificado;
+        Comida c = new Comida(nombre, 8500, "Hamburguesas");
+
         try {
-            if (contH3 == 1) {
-
-                Comida c = new Comida(nombre, 8500, 2, "Hamburguesas");
-
-                c.guardar(salida);
-
-            } else {
-                comidasModificado = Helper.modificarComida(ruta, nombre, contH3);
-                salida = new ObjectOutputStream(new FileOutputStream(ruta));
-                Helper.volcado(salida, comidasModificado);
-
-            }
+            c.guardar(salida);
         } catch (IOException ex) {
-            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NullPointerException ex) {
+            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         Helper.llenarTabla(tblTablaH, ruta);
