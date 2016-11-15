@@ -79,23 +79,6 @@ public class Helper {
         }
     }
 
-    public static void llenarTabla(JTable tabla, String ruta, int cant) {
-        DefaultTableModel tm;
-        int nf;
-        ArrayList<Comida> comidas = traerDatos(ruta);
-        tm = (DefaultTableModel) tabla.getModel();
-        limpiadoTabla(tabla);
-        nf = comidas.size();
-        tm.setRowCount(nf);
-        for (int i = 0; i < nf; i++) {
-            tabla.setValueAt(i + 1, i, 0);
-            tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
-            tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
-            tabla.setValueAt(cant, i, 3);
-            tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
-        }
-    }
-
     public static void llenarTabla(JTable tabla, String ruta) {
         DefaultTableModel tm;
         int nf;
@@ -109,6 +92,24 @@ public class Helper {
             tabla.setValueAt(comidas.get(i).getNombre(), i, 1);
             tabla.setValueAt(comidas.get(i).getPrecio(), i, 2);
             tabla.setValueAt(comidas.get(i).getCategoria(), i, 4);
+        }
+    }
+
+    public static void llenarTabla1(JTable tabla, String ruta) {
+        DefaultTableModel tm;
+        int nf;
+        ArrayList<Venta> ventas = traerDatos(ruta);
+        tm = (DefaultTableModel) tabla.getModel();
+        limpiadoTabla(tabla);
+        nf = ventas.size();
+        tm.setRowCount(nf);
+        for (int i = 0; i < nf; i++) {
+            tabla.setValueAt(i + 1, i, 0);
+            tabla.setValueAt(ventas.get(i).getC().getNombre(), i, 1);
+            tabla.setValueAt(ventas.get(i).getC().getPrecio(), i, 2);
+            tabla.setValueAt(ventas.get(i).getCant(), i, 3);
+            tabla.setValueAt(ventas.get(i).getC().getCategoria(), i, 4);
+
         }
     }
 
@@ -230,4 +231,25 @@ public class Helper {
         return null;
     }
 
+    public static boolean buscarComida(ArrayList<Comida> comidas, String ruta) {
+        int c = comidas.size();
+        for (int i = 0; i < comidas.size(); i++) {
+            if (c > 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Comida traerComida(ArrayList<Comida> comidas, String ruta) {
+
+        int c = comidas.size();
+        for (int i = 0; i < comidas.size(); i++) {
+            if (c > 1) {
+                return comidas.get(i);
+            }
+
+        }
+        return null;
+    }
 }

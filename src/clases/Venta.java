@@ -12,33 +12,34 @@ import java.io.ObjectOutputStream;
  *
  * @author jaime
  */
-public class Pedido implements java.io.Serializable {
+public class Venta {
 
-    Cliente cliente;
-    Venta v;
+    int cant;
+    Comida c;
 
-    public Pedido(Cliente cliente, Venta v) {
-        this.cliente = cliente;
-        this.v = v;
+    public Venta(int cant, Comida c) {
+        this.cant = cant;
+        this.c = c;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+
+
+    public int getCant() {
+        return cant;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCant(int cant) {
+        this.cant = cant;
     }
 
-    public Venta getV() {
-        return v;
+    public Comida getC() {
+        return c;
     }
 
-    public void setV(Venta v) {
-        this.v = v;
+    public void setC(Comida c) {
+        this.c = c;
     }
 
-    
     public void guardar(ObjectOutputStream salida) throws IOException {
         salida.writeObject(this);
     }
