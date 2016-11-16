@@ -7,6 +7,7 @@ package interfaz;
 
 import clases.Comida;
 import clases.Helper;
+import clases.Venta;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -23,21 +24,21 @@ public class ListadoPorVentasTotal extends javax.swing.JDialog {
      */
     String ruta;
     ObjectOutputStream salida;
-    ArrayList<Comida> comidas;
+    ArrayList<Venta> ventas;
 
     public ListadoPorVentasTotal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ruta = "src/datos/Comidas.txt";
+        ruta = "src/datos/Ventas.txt";
         try {
-            comidas = Helper.traerDatos(ruta);
+            ventas = Helper.traerDatos(ruta);
             salida = new ObjectOutputStream(new FileOutputStream(ruta));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta);
-        
+        Helper.volcado(salida, ventas);
+        Helper.llenarTabla1(tblTablaH, ruta);
+
     }
 
     /**
@@ -54,10 +55,13 @@ public class ListadoPorVentasTotal extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTablaH = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        cmdRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,11 +73,11 @@ public class ListadoPorVentasTotal extends javax.swing.JDialog {
 
             },
             new String [] {
-                "No.", "Nombre", "Precio", "Cantidad", "Categoria"
+                "No.", "Cliente", "Nombre", "Precio", "Cantidad", "Categoria"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -84,26 +88,41 @@ public class ListadoPorVentasTotal extends javax.swing.JDialog {
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 520, 300));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 540, 340));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 540, 340));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel1.setText("LISTA DE VENTAS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+        jLabel1.setText("LISTA DE VENTAS TOTAL");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 310, -1));
+
+        cmdRegresar.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        cmdRegresar.setForeground(new java.awt.Color(255, 0, 0));
+        cmdRegresar.setText("REGRESAR");
+        cmdRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, -1, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(591, 507));
+        setSize(new java.awt.Dimension(575, 468));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegresarActionPerformed
+
+        this.setVisible(false);
+    }//GEN-LAST:event_cmdRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,6 +167,7 @@ public class ListadoPorVentasTotal extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;

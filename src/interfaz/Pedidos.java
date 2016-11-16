@@ -29,14 +29,13 @@ public class Pedidos extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         cmdMenuHamburguesas = new javax.swing.JButton();
         cmdMenuEnsaladaAcompañamientos = new javax.swing.JButton();
         cmdRegresar = new javax.swing.JButton();
         cmdMenuBebidas = new javax.swing.JButton();
         cmdMenuPollo = new javax.swing.JButton();
         cmdMenuDesayunos = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -44,23 +43,30 @@ public class Pedidos extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 28)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("Menú ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
         cmdMenuHamburguesas.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         cmdMenuHamburguesas.setText("HAMBURGUESAS");
+        cmdMenuHamburguesas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cmdMenuHamburguesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdMenuHamburguesasActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuHamburguesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 230, 60));
+        jPanel1.add(cmdMenuHamburguesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 230, 60));
 
         cmdMenuEnsaladaAcompañamientos.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         cmdMenuEnsaladaAcompañamientos.setText("ACOMPAÑAMIENTOS");
+        cmdMenuEnsaladaAcompañamientos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cmdMenuEnsaladaAcompañamientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdMenuEnsaladaAcompañamientosActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuEnsaladaAcompañamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 240, 60));
+        jPanel1.add(cmdMenuEnsaladaAcompañamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 240, 60));
 
         cmdRegresar.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         cmdRegresar.setForeground(new java.awt.Color(255, 0, 0));
@@ -70,52 +76,48 @@ public class Pedidos extends javax.swing.JDialog {
                 cmdRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 180, 40));
+        jPanel1.add(cmdRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 440, 180, 40));
 
         cmdMenuBebidas.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         cmdMenuBebidas.setText("BEBIDAS");
+        cmdMenuBebidas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cmdMenuBebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdMenuBebidasActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuBebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 230, 60));
+        jPanel1.add(cmdMenuBebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 230, 60));
 
         cmdMenuPollo.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         cmdMenuPollo.setText("POLLO");
+        cmdMenuPollo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cmdMenuPollo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdMenuPolloActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 230, 60));
+        jPanel1.add(cmdMenuPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 230, 60));
 
         cmdMenuDesayunos.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         cmdMenuDesayunos.setText("DESAYUNOS");
+        cmdMenuDesayunos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cmdMenuDesayunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdMenuDesayunosActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdMenuDesayunos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 230, 60));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel2.setText("NOMBRE DEL PEDIDO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 210, 30));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 250, 20));
+        jPanel1.add(cmdMenuDesayunos, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 230, 60));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonalds,-madera-165062.jpg"))); // NOI18N
-        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 630, 490));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/950399__mcdonald-s_p.jpg"))); // NOI18N
+        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, 690, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,6 +218,5 @@ public class Pedidos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,17 +12,17 @@ import java.io.ObjectOutputStream;
  *
  * @author jaime
  */
-public class Venta {
+public class Venta implements java.io.Serializable {
 
-    int cant;
     Comida c;
+    Cliente cl;
+    int cant;
 
-    public Venta(int cant, Comida c) {
+    public Venta(int cant, Comida c, Cliente cl) {
         this.cant = cant;
         this.c = c;
+        this.cl = cl;
     }
-
-
 
     public int getCant() {
         return cant;
@@ -38,6 +38,14 @@ public class Venta {
 
     public void setC(Comida c) {
         this.c = c;
+    }
+
+    public Cliente getCl() {
+        return cl;
+    }
+
+    public void setCl(Cliente cl) {
+        this.cl = cl;
     }
 
     public void guardar(ObjectOutputStream salida) throws IOException {

@@ -5,6 +5,12 @@
  */
 package interfaz;
 
+import clases.Comida;
+import clases.Helper;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +22,44 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    ArrayList<Comida> c;
+    Comida co;
+    String ruta;
+    ObjectOutputStream salida;
+
     public Principal() {
         initComponents();
+        try {
+
+            ruta = "src/datos/Comidas.txt";
+            //Hamburguesas
+            c.add(new Comida("MUSH ROOM DIJON", 9000, "Hamburguesas"));
+            c.add(new Comida("PREMIUM DELUXE", 7000, "Hamburguesas"));
+            c.add(new Comida("CLUB HOUSE", 8500, "Hamburguesas"));
+            //Bebidas
+            c.add(new Comida("COCA-COLA", 4000, "Bebidas"));
+            c.add(new Comida("SPRITE", 4000, "Bebidas"));
+            c.add(new Comida("FUZE TEA", 3000, "Bebidas"));
+            //Pollos
+            c.add(new Comida("CLUBHOUSE POLLO CRISPY", 9000, "Pollos"));
+            c.add(new Comida("POLLO JR", 7000, "Pollos"));
+            c.add(new Comida("MC POLLO DELUXE", 8500, "Pollos"));
+            //Desayunos
+            c.add(new Comida("DESAYUNO COMPLETO", 12000, "Desayunos"));
+            c.add(new Comida("HUEVOS PERICOS", 12000, "Desayunos"));
+            c.add(new Comida("PANCAKES", 8000, "Desayunos"));
+            //Acompañamientos
+            c.add(new Comida("PAPAS FRITAS", 4000, "Acompañamientos"));
+            c.add(new Comida("ENSALADA", 4000, "Acompañamientos"));
+            c.add(new Comida("McFLURRY OREO", 3000, "Acompañamientos"));
+            
+            salida = new ObjectOutputStream(new FileOutputStream(ruta));
+            Helper.guardarArraysList(salida, c);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+
+        } catch (NullPointerException e) {
+        }
     }
 
     /**
@@ -111,12 +153,12 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite por favor la contraseña");
             passContrasena.requestFocusInWindow();
         } else if (txtUsuario.getText().equalsIgnoreCase("ADMIN") && passContrasena.getText().equals("123")) {
-            
+
             this.setVisible(false);
             Menu a = new Menu(this, true);
-            a.setVisible(true);        
-            
-        }else{
+            a.setVisible(true);
+
+        } else {
             JOptionPane.showMessageDialog(this, "Campos Invalidos !");
         }
 

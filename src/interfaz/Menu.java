@@ -18,12 +18,15 @@ public class Menu extends javax.swing.JDialog {
      * Creates new form Menu
      */
     String ruta;
+    String rutaCL;
 
     public Menu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         ruta = "src/datos/Comidas.txt";
+        rutaCL = "src/datos/Clientes.txt";
 
+        cmdRegistrarCliente.requestFocusInWindow();
     }
 
     /**
@@ -39,7 +42,6 @@ public class Menu extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         cmdRegistrarComida = new javax.swing.JButton();
         cmdRegistrarCliente = new javax.swing.JButton();
-        cmdRegistrarPedido = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         cmdSalir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -48,6 +50,7 @@ public class Menu extends javax.swing.JDialog {
         mnListado = new javax.swing.JMenu();
         mnListadoVentasTotal = new javax.swing.JMenuItem();
         mnListadoClientes = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mnCantidades = new javax.swing.JMenu();
         mnCantidadVendidas = new javax.swing.JMenuItem();
         mnCantidadClientes = new javax.swing.JMenuItem();
@@ -61,7 +64,7 @@ public class Menu extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Papas.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 30, 50));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 30, 50));
 
         cmdRegistrarComida.setBackground(new java.awt.Color(255, 255, 255));
         cmdRegistrarComida.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
@@ -74,7 +77,7 @@ public class Menu extends javax.swing.JDialog {
                 cmdRegistrarComidaActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdRegistrarComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 320, 70));
+        jPanel1.add(cmdRegistrarComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 320, 70));
 
         cmdRegistrarCliente.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         cmdRegistrarCliente.setForeground(new java.awt.Color(255, 0, 0));
@@ -85,18 +88,7 @@ public class Menu extends javax.swing.JDialog {
                 cmdRegistrarClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 320, 70));
-
-        cmdRegistrarPedido.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        cmdRegistrarPedido.setForeground(new java.awt.Color(255, 0, 0));
-        cmdRegistrarPedido.setText("REGISTRAR PEDIDO");
-        cmdRegistrarPedido.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
-        cmdRegistrarPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdRegistrarPedidoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cmdRegistrarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 320, 70));
+        jPanel1.add(cmdRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 320, 60));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mcdonald-fast-food-wallpaper-186080.jpg"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 430));
@@ -132,8 +124,21 @@ public class Menu extends javax.swing.JDialog {
         });
         mnListado.add(mnListadoVentasTotal);
 
-        mnListadoClientes.setText("Listado de Clientes");
+        mnListadoClientes.setText("Listado de Clientes Registrados");
+        mnListadoClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnListadoClientesActionPerformed(evt);
+            }
+        });
         mnListado.add(mnListadoClientes);
+
+        jMenuItem1.setText("Listado de Ventas por Comida");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mnListado.add(jMenuItem1);
 
         mnReportes.add(mnListado);
 
@@ -148,6 +153,11 @@ public class Menu extends javax.swing.JDialog {
         mnCantidades.add(mnCantidadVendidas);
 
         mnCantidadClientes.setText("Cantidad de Clientes");
+        mnCantidadClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnCantidadClientesActionPerformed(evt);
+            }
+        });
         mnCantidades.add(mnCantidadClientes);
 
         mnReportes.add(mnCantidades);
@@ -155,6 +165,7 @@ public class Menu extends javax.swing.JDialog {
         mnOpciones.add(mnReportes);
         mnOpciones.add(jSeparator1);
 
+        mnCerrarCesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         mnCerrarCesion.setText("Cerrar Cesion");
         mnCerrarCesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,10 +220,23 @@ public class Menu extends javax.swing.JDialog {
 
     }//GEN-LAST:event_cmdRegistrarClienteActionPerformed
 
-    private void cmdRegistrarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegistrarPedidoActionPerformed
-        RegistrarPedido rp = new RegistrarPedido(null, true);
-        rp.setVisible(true);
-    }//GEN-LAST:event_cmdRegistrarPedidoActionPerformed
+    private void mnListadoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnListadoClientesActionPerformed
+        ListadoCLTotal lct = new ListadoCLTotal(null, true);
+        lct.setVisible(true);
+    }//GEN-LAST:event_mnListadoClientesActionPerformed
+
+    private void mnCantidadClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCantidadClientesActionPerformed
+
+        int cont;
+        cont = Helper.traerDatosCliente(rutaCL).size();
+        Helper.mensaje(this, "El número de Clientes ingresados es de: " + cont, 1);        // TODO add your handling code here:
+    }//GEN-LAST:event_mnCantidadClientesActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+        ListadoPoComidas lpc = new ListadoPoComidas(null, true);
+        lpc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,11 +283,11 @@ public class Menu extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdRegistrarCliente;
     private javax.swing.JButton cmdRegistrarComida;
-    private javax.swing.JButton cmdRegistrarPedido;
     private javax.swing.JButton cmdSalir;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem mnCantidadClientes;

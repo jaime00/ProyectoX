@@ -5,8 +5,10 @@
  */
 package interfaz;
 
+import clases.Cliente;
 import clases.Helper;
 import clases.Comida;
+import clases.Venta;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,27 +27,42 @@ public class Hamburguesas extends javax.swing.JDialog {
     /**
      * Creates new form HAMBURGUESAS1
      */
-    String ruta;
-    ObjectOutputStream salida;
+    String rutaC, rutaCL, rutaV;
+    ObjectOutputStream salidaC;
     ArrayList<Comida> comidas;
-    int contH1;
-    int contH2;
-    int contH3;
-    int aux = 0;
+    ObjectOutputStream salidaV;
+    ArrayList<Comida> ventas;
 
     public Hamburguesas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ruta = "src/datos/Comidas.txt";
+        rutaC = "src/datos/Comidas.txt";
+        rutaCL = "src/datos/Clientes.txt";
+        rutaV = "src/datos/Ventas.txt";
+        Helper.llenarComboClientes(cmbClientes, rutaCL);
         try {
-            comidas = Helper.traerDatos(ruta);
-            salida = new ObjectOutputStream(new FileOutputStream(ruta));
+            comidas = Helper.traerDatos(rutaC);
+            salidaC = new ObjectOutputStream(new FileOutputStream(rutaC));
+
+            ventas = Helper.traerDatos(rutaV);
+            salidaV = new ObjectOutputStream(new FileOutputStream(rutaV));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta);
+
+        Helper.volcado(salidaC, comidas);
+        Helper.llenarTabla1(tblTablaH, rutaV);
         cmdEliminar.setEnabled(false);
+        lblCant1.setVisible(false);
+        lblCant2.setVisible(false);
+        lblCant3.setVisible(false);
+        txtCant1.setVisible(false);
+        txtCant2.setVisible(false);
+
+        txtCant3.setVisible(false);
+        cmdAceptar1.setVisible(false);
+        cmdAceptar2.setVisible(false);
+        cmdAceptar3.setVisible(false);
 
     }
 
@@ -70,8 +87,19 @@ public class Hamburguesas extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTablaH = new javax.swing.JTable();
-        cmdEliminar = new javax.swing.JButton();
+        cmbClientes = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        cmdAceptar1 = new javax.swing.JButton();
+        cmdAceptar2 = new javax.swing.JButton();
+        cmdAceptar3 = new javax.swing.JButton();
+        lblCant1 = new javax.swing.JLabel();
+        txtCant1 = new javax.swing.JTextField();
+        txtCant2 = new javax.swing.JTextField();
+        lblCant2 = new javax.swing.JLabel();
+        lblCant3 = new javax.swing.JLabel();
+        txtCant3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        cmdEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -143,11 +171,11 @@ public class Hamburguesas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "No.", "Nombre", "Precio", "Cantidad", "Categoria"
+                "No.", "Cliente", "Nombre", "Precio", "Cantidad", "Categoria"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -160,10 +188,64 @@ public class Hamburguesas extends javax.swing.JDialog {
             }
         });
         jScrollPane2.setViewportView(tblTablaH);
+        if (tblTablaH.getColumnModel().getColumnCount() > 0) {
+            tblTablaH.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 520, 190));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 550, 230));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 550, 230));
+
+        cmbClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClientesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 200, 20));
+
+        jLabel6.setText("CLIENTE:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+
+        cmdAceptar1.setText("ACEPTAR");
+        cmdAceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdAceptar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, -1, 20));
+
+        cmdAceptar2.setText("ACEPTAR");
+        jPanel1.add(cmdAceptar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, -1, 20));
+
+        cmdAceptar3.setText("ACEPTAR");
+        jPanel1.add(cmdAceptar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 300, -1, 20));
+
+        lblCant1.setText("CANTIDAD:");
+        jPanel1.add(lblCant1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
+
+        txtCant1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCant1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCant1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtCant1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 50, -1));
+
+        txtCant2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtCant2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 50, -1));
+
+        lblCant2.setText("CANTIDAD:");
+        jPanel1.add(lblCant2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, -1, -1));
+
+        lblCant3.setText("CANTIDAD:");
+        jPanel1.add(lblCant3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
+
+        txtCant3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtCant3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 300, 50, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/McDonald's_Golden_Arches.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 510, 480));
 
         cmdEliminar.setFont(new java.awt.Font("Tahoma", 3, 22)); // NOI18N
         cmdEliminar.setText("ELIMINAR");
@@ -173,9 +255,6 @@ public class Hamburguesas extends javax.swing.JDialog {
             }
         });
         jPanel1.add(cmdEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 150, 50));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/McDonald's_Golden_Arches.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 510, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,29 +280,29 @@ public class Hamburguesas extends javax.swing.JDialog {
     }//GEN-LAST:event_cmdRegresarActionPerformed
 
     private void cmdH1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH1ActionPerformed
+        txtCant1.setVisible(true);
+        lblCant1.setVisible(true);
+        txtCant1.requestFocusInWindow();
+        cmdAceptar1.setVisible(true);
+        lblCant2.setVisible(false);
+        lblCant3.setVisible(false);
 
-        contH1++;
-        String nombre = "MUSHROOM DIJON";
+        txtCant2.setVisible(false);
+        txtCant3.setVisible(false);
 
-        Comida c = new Comida(nombre, 9000, "Hamburguesas");
-        try {
-
-            c.guardar(salida);
-        } catch (IOException ex) {
-            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Helper.llenarTabla(tblTablaH, ruta);
+        cmdAceptar2.setVisible(false);
+        cmdAceptar3.setVisible(false);
 
 
     }//GEN-LAST:event_cmdH1ActionPerformed
 
     private void tblTablaHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaHMouseClicked
         int i;
-        Comida c;
-        ArrayList<Comida> comidas = Helper.traerDatos(ruta);
+        Venta v;
+        ArrayList<Venta> Ventas = Helper.traerDatos(rutaV);
         i = tblTablaH.getSelectedRow();
 
-        c = comidas.get(i);
+        v = Ventas.get(i);
 
         cmdEliminar.setEnabled(true);
 
@@ -232,58 +311,89 @@ public class Hamburguesas extends javax.swing.JDialog {
     private void cmdEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEliminarActionPerformed
         int i;
 
-        ArrayList<Comida> comidas = Helper.traerDatos(ruta);
+        ArrayList<Venta> ventas = Helper.traerDatos(rutaV);
         i = tblTablaH.getSelectedRow();
-        comidas.remove(i);
+        ventas.remove(i);
         try {
-            salida = new ObjectOutputStream(new FileOutputStream(ruta));
+            salidaV = new ObjectOutputStream(new FileOutputStream(rutaV));
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Comida.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Comida.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ArrayIndexOutOfBoundsException ex) {
         }
 
-        Helper.volcado(salida, comidas);
-        Helper.llenarTabla(tblTablaH, ruta);
+        Helper.volcado(salidaV, ventas);
+        Helper.llenarTabla(tblTablaH, rutaV);
         cmdEliminar.setEnabled(false);
 
     }//GEN-LAST:event_cmdEliminarActionPerformed
 
     private void cmdH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH2ActionPerformed
+        cmdAceptar2.setVisible(true);
+        txtCant2.setVisible(true);
+        lblCant2.setVisible(true);
+        txtCant2.requestFocusInWindow();
 
-        contH2++;
-        String nombre = "PREMIUM DELUXE";
+        lblCant1.setVisible(false);
+        lblCant3.setVisible(false);
 
-        Comida c = new Comida(nombre, 7000, "Hamburguesas");
+        txtCant1.setVisible(false);
+        txtCant3.setVisible(false);
 
-        try {
-            c.guardar(salida);
-        } catch (IOException ex) {
-            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        Helper.llenarTabla(tblTablaH, ruta);
-
+        cmdAceptar1.setVisible(false);
+        cmdAceptar3.setVisible(false);
 
     }//GEN-LAST:event_cmdH2ActionPerformed
 
     private void cmdH3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdH3ActionPerformed
 
-        contH3++;
-        String nombre = "CLUB HOUSE";
-        Comida c = new Comida(nombre, 8500, "Hamburguesas");
+        cmdAceptar3.setVisible(true);
+        txtCant3.setVisible(true);
+        lblCant3.setVisible(true);
+        txtCant3.requestFocusInWindow();
 
-        try {
-            c.guardar(salida);
-        } catch (IOException ex) {
-            Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
+        lblCant1.setVisible(false);
+        lblCant2.setVisible(false);
+
+        txtCant1.setVisible(false);
+        txtCant2.setVisible(false);
+
+        cmdAceptar1.setVisible(false);
+        cmdAceptar2.setVisible(false);
+    }//GEN-LAST:event_cmdH3ActionPerformed
+
+    private void cmbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbClientesActionPerformed
+
+    private void txtCant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCant1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCant1ActionPerformed
+
+    private void cmdAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAceptar1ActionPerformed
+        int cant = Integer.parseInt(txtCant1.getText());
+        String aux, cedula;
+        int indice;
+        aux = cmbClientes.getSelectedItem().toString();
+        indice = aux.indexOf("-") - 1;
+        cedula = aux.substring(0, indice);
+        Cliente persona = Helper.traerClienteCedula(cedula, rutaCL);
+        String nombre = "MUSHROOM DIJON";
+        if (Helper.buscarComida(comidas, rutaC, nombre)) {
+            Comida co = Helper.traerComidaNombre(nombre, rutaC);
+            Venta venta = new Venta(cant, co, persona);
+            try {
+                venta.guardar(salidaV);
+            } catch (IOException ex) {
+                Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
         }
 
-        Helper.llenarTabla(tblTablaH, ruta);
+        Helper.llenarTabla1(tblTablaH, rutaV);
 
-
-    }//GEN-LAST:event_cmdH3ActionPerformed
+    }//GEN-LAST:event_cmdAceptar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,6 +449,10 @@ public class Hamburguesas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cmbClientes;
+    private javax.swing.JButton cmdAceptar1;
+    private javax.swing.JButton cmdAceptar2;
+    private javax.swing.JButton cmdAceptar3;
     private javax.swing.JButton cmdEliminar;
     private javax.swing.JButton cmdH1;
     private javax.swing.JButton cmdH2;
@@ -349,9 +463,16 @@ public class Hamburguesas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCant1;
+    private javax.swing.JLabel lblCant2;
+    private javax.swing.JLabel lblCant3;
     private javax.swing.JTable tblTablaH;
+    private javax.swing.JTextField txtCant1;
+    private javax.swing.JTextField txtCant2;
+    private javax.swing.JTextField txtCant3;
     // End of variables declaration//GEN-END:variables
 }
