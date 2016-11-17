@@ -31,7 +31,7 @@ public class Hamburguesas extends javax.swing.JDialog {
     ObjectOutputStream salidaC;
     ArrayList<Comida> comidas;
     ObjectOutputStream salidaV;
-    ArrayList<Comida> ventas;
+    ArrayList<Venta> ventas;
 
     public Hamburguesas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -40,6 +40,7 @@ public class Hamburguesas extends javax.swing.JDialog {
         rutaCL = "src/datos/Clientes.txt";
         rutaV = "src/datos/Ventas.txt";
         Helper.llenarComboClientes(cmbClientes, rutaCL);
+
         try {
             comidas = Helper.traerDatos(rutaC);
             salidaC = new ObjectOutputStream(new FileOutputStream(rutaC));
@@ -50,19 +51,20 @@ public class Hamburguesas extends javax.swing.JDialog {
             System.out.println(ex.getMessage());
         }
 
-        Helper.volcado(salidaC, comidas);
-        Helper.llenarTabla1(tblTablaH, rutaV);
+        Helper.volcado(salidaV, ventas);
+        Helper.llenarTabla(tblTablaH, rutaV);
+
         cmdEliminar.setEnabled(false);
         lblCant1.setVisible(false);
         lblCant2.setVisible(false);
         lblCant3.setVisible(false);
         txtCant1.setVisible(false);
         txtCant2.setVisible(false);
-
         txtCant3.setVisible(false);
         cmdAceptar1.setVisible(false);
         cmdAceptar2.setVisible(false);
         cmdAceptar3.setVisible(false);
+        cmbClientes.setSelectedIndex(0);
 
     }
 
@@ -196,6 +198,7 @@ public class Hamburguesas extends javax.swing.JDialog {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 550, 230));
 
+        cmbClientes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         cmbClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cmbClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,6 +219,11 @@ public class Hamburguesas extends javax.swing.JDialog {
         jPanel1.add(cmdAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, -1, 20));
 
         cmdAceptar2.setText("ACEPTAR");
+        cmdAceptar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdAceptar2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdAceptar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, -1, 20));
 
         cmdAceptar3.setText("ACEPTAR");
@@ -230,9 +238,19 @@ public class Hamburguesas extends javax.swing.JDialog {
                 txtCant1ActionPerformed(evt);
             }
         });
+        txtCant1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCant1KeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCant1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 50, -1));
 
         txtCant2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCant2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCant2KeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCant2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 50, -1));
 
         lblCant2.setText("CANTIDAD:");
@@ -242,6 +260,11 @@ public class Hamburguesas extends javax.swing.JDialog {
         jPanel1.add(lblCant3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
 
         txtCant3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCant3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCant3KeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCant3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 300, 50, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/McDonald's_Golden_Arches.png"))); // NOI18N
@@ -311,9 +334,9 @@ public class Hamburguesas extends javax.swing.JDialog {
     private void cmdEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEliminarActionPerformed
         int i;
 
-        ArrayList<Venta> ventas = Helper.traerDatos(rutaV);
+        ArrayList<Venta> ventas1 = Helper.traerDatos(rutaV);
         i = tblTablaH.getSelectedRow();
-        ventas.remove(i);
+        ventas1.remove(i);
         try {
             salidaV = new ObjectOutputStream(new FileOutputStream(rutaV));
         } catch (FileNotFoundException ex) {
@@ -323,7 +346,7 @@ public class Hamburguesas extends javax.swing.JDialog {
         } catch (ArrayIndexOutOfBoundsException ex) {
         }
 
-        Helper.volcado(salidaV, ventas);
+        Helper.volcado(salidaV, ventas1);
         Helper.llenarTabla(tblTablaH, rutaV);
         cmdEliminar.setEnabled(false);
 
@@ -372,28 +395,72 @@ public class Hamburguesas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCant1ActionPerformed
 
     private void cmdAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAceptar1ActionPerformed
-        int cant = Integer.parseInt(txtCant1.getText());
-        String aux, cedula;
-        int indice;
-        aux = cmbClientes.getSelectedItem().toString();
-        indice = aux.indexOf("-") - 1;
-        cedula = aux.substring(0, indice);
-        Cliente persona = Helper.traerClienteCedula(cedula, rutaCL);
-        String nombre = "MUSHROOM DIJON";
-        if (Helper.buscarComida(comidas, rutaC, nombre)) {
-            Comida co = Helper.traerComidaNombre(nombre, rutaC);
-            Venta venta = new Venta(cant, co, persona);
+
+        if (txtCant1.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite por favor la cantidad a llevar");
+            txtCant1.requestFocusInWindow();
+        } else {
             try {
-                venta.guardar(salidaV);
+                int cant = Integer.parseInt(txtCant1.getText());
+                String aux, cedula;
+                int indice;
+                aux = cmbClientes.getSelectedItem().toString();
+                indice = aux.indexOf("-") - 1;
+                cedula = aux.substring(0, indice);
+                Cliente persona = Helper.traerClienteCedula(cedula, rutaCL);
+
+                if (Helper.buscarComidaNombre("MUSH ROOM DIJON", rutaC)) {
+                    Comida co = Helper.traerComidaNombre("MUSH ROOM DIJON", rutaC);
+                    Venta venta = new Venta(cant, co, persona);
+                    venta.guardar(salidaV);
+                }
+
             } catch (IOException ex) {
                 Logger.getLogger(Hamburguesas.class.getName()).log(Level.SEVERE, null, ex);
-
             }
+
+            Helper.llenarTabla1(tblTablaH, rutaV);
+
+        }
+    }//GEN-LAST:event_cmdAceptar1ActionPerformed
+
+    private void cmdAceptar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAceptar2ActionPerformed
+
+    }//GEN-LAST:event_cmdAceptar2ActionPerformed
+
+    private void txtCant1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCant1KeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+
         }
 
-        Helper.llenarTabla1(tblTablaH, rutaV);
+    }//GEN-LAST:event_txtCant1KeyTyped
 
-    }//GEN-LAST:event_cmdAceptar1ActionPerformed
+    private void txtCant2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCant2KeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txtCant2KeyTyped
+
+    private void txtCant3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCant3KeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txtCant3KeyTyped
 
     /**
      * @param args the command line arguments

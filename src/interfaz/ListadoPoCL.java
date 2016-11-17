@@ -11,14 +11,14 @@ import clases.Helper;
  *
  * @author jaime
  */
-public class ListadoPoComidas extends javax.swing.JDialog {
+public class ListadoPoCL extends javax.swing.JDialog {
 
     /**
      * Creates new form ListadoDeComidas
      */
     String rutaCL;
 
-    public ListadoPoComidas(java.awt.Frame parent, boolean modal) {
+    public ListadoPoCL(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         rutaCL = "src/datos/Clientes.txt";
@@ -48,12 +48,15 @@ public class ListadoPoComidas extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(255, 51, 0));
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("LISTADO DE COMIDAS POR CLIENTE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 340, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 340, -1));
 
         cmbClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cmbClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +66,8 @@ public class ListadoPoComidas extends javax.swing.JDialog {
         });
         jPanel1.add(cmbClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 200, 20));
 
+        jLabel6.setBackground(new java.awt.Color(255, 51, 0));
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("CLIENTE:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
@@ -76,6 +81,7 @@ public class ListadoPoComidas extends javax.swing.JDialog {
         });
         jPanel1.add(cmdRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 170, 30));
 
+        jPanel5.setBackground(new java.awt.Color(255, 51, 0));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Total"));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -89,6 +95,8 @@ public class ListadoPoComidas extends javax.swing.JDialog {
         });
         jPanel5.add(cmdRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 170, 30));
 
+        tblTablaH.setBackground(new java.awt.Color(0, 0, 0));
+        tblTablaH.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tblTablaH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -124,7 +132,7 @@ public class ListadoPoComidas extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(570, 464));
@@ -166,21 +174,23 @@ public class ListadoPoComidas extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListadoPoComidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadoPoCL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListadoPoComidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadoPoCL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListadoPoComidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadoPoCL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListadoPoComidas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListadoPoCL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListadoPoComidas dialog = new ListadoPoComidas(new javax.swing.JFrame(), true);
+                ListadoPoCL dialog = new ListadoPoCL(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

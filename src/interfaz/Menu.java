@@ -234,7 +234,7 @@ public class Menu extends javax.swing.JDialog {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
-        ListadoPoComidas lpc = new ListadoPoComidas(null, true);
+        ListadoPoCL lpc = new ListadoPoCL(null, true);
         lpc.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
