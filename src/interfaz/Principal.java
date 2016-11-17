@@ -7,10 +7,12 @@ package interfaz;
 
 import clases.Comida;
 import clases.Helper;
+import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,10 +28,12 @@ public class Principal extends javax.swing.JFrame {
     Comida co;
     String ruta;
     ObjectOutputStream salida;
-
+    String i = "C:\\Users\\jaime\\Desktop\\ProyectoX\\src\\imagenes";
     public Principal() {
         initComponents();
         try {
+            
+            setIconImage(new ImageIcon(getClass().getResource("/imagenes/Icono.png")).getImage());
 
             ruta = "src/datos/Comidas.txt";
             //Hamburguesas
@@ -91,17 +95,17 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel2.setText("Usuario:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 110, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 110, -1));
 
         txtUsuario.setText("ADMIN");
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 120, 30));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 120, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel3.setText("Contraseña:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 160, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 160, -1));
 
         passContrasena.setText("123");
-        jPanel1.add(passContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 110, -1));
+        jPanel1.add(passContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 110, -1));
 
         cmdEntrar.setText("ENTRAR");
         cmdEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +113,7 @@ public class Principal extends javax.swing.JFrame {
                 cmdEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 160, 40));
+        jPanel1.add(cmdEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 160, 40));
 
         cmdEntrar1.setText("SALIR");
         cmdEntrar1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,30 +121,28 @@ public class Principal extends javax.swing.JFrame {
                 cmdEntrar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(cmdEntrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 160, 40));
+        jPanel1.add(cmdEntrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 160, 40));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/unknown-128.png"))); // NOI18N
         jLabel5.setAutoscrolls(true);
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, 150));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, 150));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/McDonald's_Golden_Arches.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 460, 430));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 460, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(506, 496));
+        setSize(new java.awt.Dimension(506, 450));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,7 +156,7 @@ public class Principal extends javax.swing.JFrame {
             passContrasena.requestFocusInWindow();
         } else if (txtUsuario.getText().equalsIgnoreCase("ADMIN") && passContrasena.getText().equals("123")) {
 
-            this.setVisible(false);
+            
             Menu a = new Menu(this, true);
             a.setVisible(true);
 
@@ -215,4 +217,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPasswordField passContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
 }
